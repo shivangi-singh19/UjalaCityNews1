@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Contact Page Area Start Here -->
+<section class="bg-body section-space-less30">
+    <div class="container">
+        <div class="row">
+            <div class="ne-sidebar sidebar-break-md col-lg-2 col-md-12">
+                 <div class="sidebar-box">
+                    <div class="ne-banner-layout1 text-center">
+                        <a href="#">
+                            <img src="~/Content/img/nesidebannner.jpeg" alt="ad" class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12 mb-30">
+                <div class="topic-border color-cod-gray mb-30">
+                    <div class="topic-box-lg color-cod-gray">अपना संदेश भेजें</div>
+                </div>
+                <form id="contact-form" class="contact-form">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Name" class="form-control" name="Name" id="form-subject" data-error="Name field is required"
+                                           required="">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input type="email" placeholder="Your E-mail" class="form-control" name="Email" id="form-email" data-error="Email field is required"
+                                           required="">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Subject" class="form-control" name="Subject" id="form-subject" data-error="Subject field is required"
+                                           required="">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <textarea placeholder="Message" class="textarea form-control" name="Message" id="form-message" rows="1" cols="10" data-error="Message field is required"
+                                              ></textarea>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-6 col-sm-6 col-sm-12">
+                                <div class="form-group mb-none">
+                                    <button type="button" id="SaveContact" class="btn-ftg-ptp-56 disabled">Send Message</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-8 col-sm-6 col-sm-12">
+                                <div class="alert alert-success form-response contact-response" style="display:none" role="alert">
+                                    Thank you for your message. It has been sent.
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+
+                <div class="topic-border color-cod-gray mb-30">
+                    <div class="topic-box-lg color-cod-gray">स्थिति</div>
+                </div>
+                <div class="google-map-area mb-50">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14230.476222357001!2d80.953656!3d26.9155825!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399957b27b9d2de1%3A0x5790d5768d78f741!2sIncroyable%20Industries%20-%20Website%20%26%20Software%20Development%20%7C%20Best%20Digital%20Marketing%20Company%20in%20Lucknow!5e0!3m2!1sen!2sin!4v1722424959132!5m2!1sen!2sin" width="650" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <div class="ne-sidebar sidebar-break-md col-lg-2 col-md-12">
+                <div class="sidebar-box">
+                    <div class="ne-banner-layout1 text-center">
+                        <a href="#">
+                            <img src="~/Content/img/nesidebannner.jpeg" alt="ad" class="img-fluid">
+                           
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Page Area End Here -->
