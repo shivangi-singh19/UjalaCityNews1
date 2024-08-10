@@ -120,14 +120,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\WebHelper.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\CommonDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Categories.cs" />
+    <Compile Include="Models\NewsPosts.cs" />
     <Compile Include="Models\ContactUs.cs" />
-    <Compile Include="Models\News.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +223,7 @@
     <Content Include="Content\Admin\img\icons\upload.svg" />
     <Content Include="Content\Admin\img\icons\users1.svg" />
     <Content Include="Content\Admin\img\icons\wallet1.svg" />
+    <Content Include="Content\Admin\img\imagePlaceholder.png" />
     <Content Include="Content\Admin\img\img-01.jpg" />
     <Content Include="Content\Admin\img\img-02.jpg" />
     <Content Include="Content\Admin\img\img-03.jpg" />
@@ -230,6 +233,7 @@
     <Content Include="Content\Admin\img\logo-small.png" />
     <Content Include="Content\Admin\img\logo-white.png" />
     <Content Include="Content\Admin\img\logo.png" />
+    <Content Include="Content\Admin\img\logo007.png" />
     <Content Include="Content\Admin\img\product\noimage.png" />
     <Content Include="Content\Admin\img\product\product1.jpg" />
     <Content Include="Content\Admin\img\product\product10.jpg" />
@@ -288,6 +292,7 @@
     <Content Include="Content\Admin\img\profiles\avatar-13.jpg" />
     <Content Include="Content\Admin\img\profiles\avatar-17.jpg" />
     <Content Include="Content\Admin\img\profiles\avator1.jpg" />
+    <Content Include="Content\Admin\img\profiles\mam001.png" />
     <Content Include="Content\Admin\js\bootstrap-datetimepicker.min.js" />
     <Content Include="Content\Admin\js\bootstrap.bundle.min.js" />
     <Content Include="Content\Admin\js\dataTables.bootstrap4.min.js" />
@@ -631,11 +636,13 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\ClientImages\PostImages\news-117.jpg" />
     <Content Include="Content\css\animate.min.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\hover-min.css" />
     <Content Include="Content\css\ie-only.css" />
+    <Content Include="Content\css\log.css" />
     <Content Include="Content\css\magnific-popup.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\css\meanmenu.min.css" />
@@ -695,6 +702,8 @@
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\logo007.png" />
     <Content Include="Content\img\logo008.png" />
+    <Content Include="Content\img\mam001.png" />
+    <Content Include="Content\img\mam002.jpg" />
     <Content Include="Content\img\nesidebannner.jpeg" />
     <Content Include="Content\img\news\news-117.jpg" />
     <Content Include="Content\img\news\news1.jpg" />
@@ -1008,6 +1017,9 @@
     <Content Include="Content\img\news\news97.jpg" />
     <Content Include="Content\img\news\news98.jpg" />
     <Content Include="Content\img\news\news99.jpg" />
+    <Content Include="Content\img\slider\slide001.jpg" />
+    <Content Include="Content\img\slider\slide002.jpg" />
+    <Content Include="Content\img\slider\slide003.jpg" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\CustomScript.js" />
     <Content Include="Content\js\isotope.pkgd.min.js" />
@@ -1123,6 +1135,11 @@
     <Content Include="Views\Home\CityState.cshtml" />
     <Content Include="Views\Home\News.cshtml" />
     <Content Include="Views\Admin\AddNews.cshtml" />
+    <Content Include="Views\Shared\_PostList.cshtml" />
+    <Content Include="Views\Admin\AddCategories.cshtml" />
+    <Content Include="Views\Admin\CategoriesList.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

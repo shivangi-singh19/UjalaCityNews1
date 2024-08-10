@@ -6573,7 +6573,7 @@ ul.footer-social {
 }
 
 .box-padding30 {
-    padding: 2rem 3rem 1rem
+    padding: 10px 10px 5px 10px
 }
 
 .mb30-list {
@@ -7087,5 +7087,11 @@ body2 {
         text-align: right;
     }
 
-   
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
 

@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using UjalaCityNews1.DAL;
 using UjalaCityNews1.Models;
+using static UjalaCityNews1.DAL.CommonDAL;
 
 namespace UjalaCityNews1.Controllers
 {
@@ -14,9 +17,30 @@ namespace UjalaCityNews1.Controllers
         private readonly CommonDAL _commonDal = new CommonDAL();
         public ActionResult Index()
         {
-            return View();
+            var list =  _commonDal.Proc_GetNewsByCategory();
+            var postCatWiseList = list
+            .GroupBy(post => post.Category)
+            .Select(group => new PostCatWise
+            {
+                CategoryItem = group.Key,
+                Posts = group.ToList()
+            })
+            .ToList();
+            return View(postCatWiseList);
         }
-
+        public ActionResult Category(string title)
+        {
+            var list =  _commonDal.Proc_GetNewsByCategory(title);
+            var postCatWiseList = list
+            .GroupBy(post => post.Category)
+            .Select(group => new PostCatWise
+            {
+                CategoryItem = group.Key,
+                Posts = group.ToList()
+            })
+            .ToList();
+            return View(postCatWiseList);
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -28,9 +52,10 @@ namespace UjalaCityNews1.Controllers
             return View();
         }
 
-        public ActionResult Politics()
+        public ActionResult Politics(string title)
         {
-            return View();
+            var news = _commonDal.GetNewsPostByTitle("Politics"); // Assuming you have a method to get posts by category
+            return View(news);
         }
         public ActionResult Sirituality()
         {
@@ -72,11 +97,17 @@ namespace UjalaCityNews1.Controllers
         {
             return View();
         }
-        public ActionResult News()
+
+        public ActionResult News(string title) 
+        {
+            var news = _commonDal.GetNewsPostByTitle(title);
+            return View(news ?? new NewsPosts());
+        }
+        public ActionResult Videos()
         {
             return View();
         }
-        public ActionResult Videos()
+        public ActionResult Login()
         {
             return View();
         }
@@ -90,7 +121,7 @@ namespace UjalaCityNews1.Controllers
         [HttpPost]
         public ActionResult SaveContact(ContactUs model)
         {
-            _commonDal.AddPerson(model);
+            _commonDal.AddContact(model);
             return Json("Contact Data Saved Succefully");
         }
     }

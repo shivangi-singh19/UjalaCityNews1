@@ -1,201 +1,122 @@
-﻿@{
+﻿@model IList<UjalaCityNews1.Models.PostCatWise>
+@{
     ViewBag.Title = "Home Page";
 }
 
+
+
+
+<section class="bg-accent section-space-bottom-less4">
+    <div class="container">
+        <div class="row tab-space2">
+            <div class="col-md-8 col-sm-12 mb-4">
+                <div class="main-slider1 img-overlay-slider">
+                    <div class="bend niceties preview-1">
+                        <div id="ensign-nivoslider-3" class="slides">
+                            <img src="~/Content/img/banner/slide002.jpg" alt="slider" title="#slider-direction-1" />
+                            <img src="~/Content/img/banner/slide001.jpg" alt="slider" title="#slider-direction-2" />
+                            <img src="~/Content/img/banner/slide003.jpg" alt="slider" title="#slider-direction-3" />
+                        </div>
+                        <div id="slider-direction-1" class="t-cn slider-direction">
+                            <div class="slider-content s-tb slide-1">
+                                <div class="title-container s-tb-c">
+                                    <div class="text-left pl-50 pl20-xs">
+                                        <div class="post-date-light d-none d-sm-block">
+                                            <ul>
+                                                <li>
+                                                    <span>
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    </span>July 08, 2023
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="slider-title">अन्य मिशन से कितना अलग है चंद्रयान-3, इसके पीछे का चेहरा कौन, पहले क्या थी उनकी भूमिका?</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="slider-direction-2" class="t-cn slider-direction">
+                            <div class="slider-content s-tb slide-2">
+                                <div class="title-container s-tb-c">
+                                    <div class="text-left pl-50 pl20-xs">
+                                        <div class="post-date-light d-none d-sm-block">
+                                            <ul>
+                                                <li>
+                                                    <span>
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    </span>July 08, 2023
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="slider-title">PM ने योजनाओं का लोकार्पण किया, बोले- एक्स्प्रेस-वे के मामले में राजस्थान ने डबल सेंचुरी मार दी</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="slider-direction-3" class="t-cn slider-direction">
+                            <div class="slider-content s-tb slide-3">
+                                <div class="title-container s-tb-c">
+                                    <div class="text-left pl-50 pl20-xs">
+                                        <div class="post-date-light d-none d-sm-block">
+                                            <ul>
+                                                <li>
+                                                    <span>
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    </span>July 08, 2023
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="slider-title">रील लाइफ की 'तरला दलाल' र‍ियल में क‍ितनी अच्छी कुक? हुमा कुरैशी ने खोले राज </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="newsletter-area bg-primary">
+                    <img src="~/Content/img/mam002.jpg" alt="newsletter" class="img-fluid m-auto mb-15">
+                    <p>भाई बहन ने मिलकर दिया था इंस्पेक्टर की हत्या को अंजाम। इंस्पेक्टर सतीश सिंह की कई अन्य महिलाओं से अवैध रिश्ते और इन रिश्तों के चलते पत्नी भावना सिंह से लगातार झगडा होता था बहन भावना को परेशान देख भाई देवेंद्र वर्मा ने इंस्पेक्टर की हत्या का बनाया था</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- More Area Start Here -->
-<section class="bg-body section-space-less30">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="topic-border color-hollywood-cerise mb-30">
-                    <div class="topic-box-lg color-hollywood-cerise">ताज़ा ख़बरें</div>
-                </div>
+@if (Model.Any())
+{
+    foreach (var cat in Model)
+
+    {
+        <section class="bg-body section-space-less30">
+            <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news109.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-s" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर</a>
-                            </h3>
+                    <div class="col-12">
+                        <div class="topic-border color-hollywood-cerise mb-30">
+                            <div class="topic-box-lg color-hollywood-cerise">@cat.CategoryItem</div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news110.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news111.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर.</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news112.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर.</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news113.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर.</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news114.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर.</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news115.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news116.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर</a>
-                            </h3>
+                        <div class="row">
+                            @foreach (var innerItem in cat.Posts)
+                            {
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="mb-25">
+                                        <a class="img-opacity-hover" href="single-news-1.html">
+                                            <img src="@innerItem.ImagePath" alt="news" class="img-fluid width-100 mb-15">
+                                        </a>
+                                        <h3 class="title-medium-dark size-s" style="font-size:13px">
+                                            <a href="/Home/News/@innerItem.Slug">@innerItem.EnglishTitle</a>
+                                        </h3>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<!-- More Area End Here -->
-<section class="bg-body section-space-less30">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="topic-border color-hollywood-cerise mb-30">
-                    <div class="topic-box-lg color-hollywood-cerise">क्राइम</div>
-                    <div class="more-info-link">
-                        <a href="post-style-1.html">
-                            सभी खबरें
-                            <i class="fa fa-angle-right" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news109.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-s" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news110.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news111.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर.</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news112.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर.</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news113.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर.</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news114.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर.</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news115.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news116.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर</a>
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
+    }
+}
 <!-- Latest News Area Start Here -->
 <section class="bg-body section-space-less30">
     <div class="container">
@@ -397,104 +318,3 @@
     </div>
 </section>
 <!-- Top Story Area End Here -->
-<section class="bg-body section-space-less30">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="topic-border color-hollywood-cerise mb-30">
-                    <div class="topic-box-lg color-hollywood-cerise">खेल</div>
-                    <div class="more-info-link">
-                        <a href="post-style-1.html">
-                            सभी खबरें
-                            <i class="fa fa-angle-right" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news109.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-s" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news110.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news111.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर.</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news112.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर.</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news113.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर.</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news114.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर.</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news115.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="mb-25">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="~/Content/img/news/news116.jpg" alt="news" class="img-fluid width-100 mb-15">
-                            </a>
-                            <h3 class="title-medium-dark size-lg" style="font-size:13px">
-                                <a href="single-news-1.html">ए पी सेन कॉलेज युवाओं को बनाएगा आत्मनिर्भर</a>
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-

@@ -1,0 +1,99 @@
+﻿@model IList<UjalaCityNews1.Models.Categories>
+@{
+    ViewBag.Title = "Category List";
+    Layout = "~/Views/Shared/_Admin1.cshtml";
+}
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+
+<div class="page-header">
+    <div class="page-title">
+        <h4>Category List</h4>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-top">
+            <div class="search-set">
+                <div class="search-input">
+                    <a class="btn btn-searchset"><img src="~/Content/Admin/img/icons/search-white.svg" alt="img"></a>
+                </div>
+            </div>
+            <div class="page-btn" style="background: #ff9f43">
+                <a href="/Admin/AddNews" class="btn btn-added">Add User</a>
+            </div>
+        </div>
+
+
+        <div class="table-responsive">
+            <table class="table datanew">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>IsActive</th>
+                        <th>Show on home</th>
+                    </tr>
+                </thead>
+                <tbody id="tblTbody">
+                    @if (Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            var isActive = item.IsActive ? "checked" : "";
+                            var IsActiveForHome = item.IsActiveForHome ? "checked" : "";
+                            <tr>
+                                <td class="text-wrap">
+                                    <a target="_blank" href="/Admin/AddCategories?id=@item.Id">@item.Name</a>
+                                </td>
+                               <td>
+                                    <input class="statusToggle" id="Something" data-catid="@item.Id" data-typestatus="isactive" type="checkbox" data-size="sm" @isActive data-toggle="toggle" data-onstyle="success">
+                               </td>
+                                <td>
+                                    <input class="statusToggle" data-catid="@item.Id" data-typestatus="isactivehome" type="checkbox" data-size="sm" @IsActiveForHome data-toggle="toggle" data-onstyle="success">
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.datanew').DataTable({
+                "bFilter": true,
+                "sDom": 'fBtlpi',
+                'pagingType': 'numbers',
+                "ordering": true,
+                "language": {
+                    search: ' ',
+                    sLengthMenu: '_MENU_',
+                    searchPlaceholder: "Search...",
+                    info: "_START_ - _END_ of _TOTAL_ items",
+                },
+                initComplete: (settings, json) => {
+                    $('.dataTables_filter').appendTo('#tableSearch');
+                    $('.dataTables_filter').appendTo('.search-input');
+                },
+            });
+            $('.statusToggle').change(function () {
+                $('#console-event').html('Toggle: ' + $(this).prop('checked'))
+                ToggleStatus($(this).data('catid'), $(this).data('typestatus'));
+            })
+        });
+        var ToggleStatus = (id, type) => {
+            let param = {
+                id: id, type: type
+            }
+            console.log(param, 'param');
+            $.post('/Admin/UpdateIsActiveCategories', param, (res) => {
+                console.log(res);
+            })
+        }
+    </script>
+}
+

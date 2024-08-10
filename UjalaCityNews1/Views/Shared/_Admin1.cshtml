@@ -21,7 +21,7 @@
 
             <div class="header-left active">
                 <a href="index.html" class="logo logo-normal">
-                    <img src="~/Content/Admin/img/logo.png" alt="">
+                    <img src="~/Content/Admin/img/logo007.png" alt="">
                 </a>
                 <a href="index.html" class="logo logo-white">
                     <img src="~/Content/Admin/img/logo-white.png" alt="">
@@ -29,7 +29,7 @@
                 <a href="index.html" class="logo-small">
                     <img src="~/Content/Admin/img/logo-small.png" alt="">
                 </a>
-                <a id="toggle_btn" href="javascript:void(0);">
+                <a id="toggle_btn" style="display:none" href="javascript:void(0);">
                 </a>
             </div>
 
@@ -46,7 +46,7 @@
                 <li class="nav-item dropdown has-arrow main-drop">
                     <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
                         <span class="user-img">
-                            <img src="~/Content/Admin/img/profiles/avator1.jpg" alt="">
+                            <img src="~/Content/Admin/img/profiles/mam001.png" alt="">
                             <span class="status online"></span>
                         </span>
                     </a>
@@ -54,20 +54,18 @@
                         <div class="profilename">
                             <div class="profileset">
                                 <span class="user-img">
-                                    <img src="~/Content/Admin/img/profiles/avator1.jpg" alt="">
+                                    <img src="~/Content/Admin/img/profiles/mam001.png" alt="">
                                     <span class="status online"></span>
                                 </span>
                                 <div class="profilesets">
-                                    <h6>John Doe</h6>
+                                    <h6>Manju Devi</h6>
                                     <h5>Admin</h5>
                                 </div>
                             </div>
                             <hr class="m-0">
-                            <a class="dropdown-item" href="profile.html"> <i class="me-2" data-feather="user"></i> My Profile</a>
-                            <a class="dropdown-item" href="generalsettings.html"><i class="me-2" data-feather="settings"></i>Settings</a>
-                            <hr class="m-0">
+                           <hr class="m-0">
                             <a class="dropdown-item logout pb-0" href="signin.html"><img src="~/Content/Admin/img/icons/log-out.svg" class="me-2" alt="img">Logout</a>
-                        </div>
+                        </div>  
                     </div>
                 </li>
             </ul>
@@ -88,66 +86,25 @@
             <div class="sidebar-inner slimscroll">
                 <div id="sidebar-menu" class="sidebar-menu">
                     <ul>
-                        <li class="active">
-                            <a href="index.html"><img src="~/Content/Admin/img/icons/dashboard.svg" alt="img"><span> Dashboard</span> </a>
+                        <li class="submenu">
+                            <a href="javascript:void(0);"><i data-feather="alert-octagon"></i> <span> News</span> <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="/Admin/AddNews">Add</a></li>
+                                <li><a href="/Admin/Index">List</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);"><i data-feather="layout"></i> <span> Category </span> <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="/Admin/AddCategories">Add</a></li>
+                                <li><a href="/Admin/CategoriesList">List</a></li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="components.html"><i data-feather="layers"></i><span> Components</span> </a>
+                            <a href="components.html"><i data-feather="layers"></i><span> Slider</span> </a>
                         </li>
                         <li>
-                            <a href="blankpage.html"><i data-feather="file"></i><span> Blank Page</span> </a>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><i data-feather="alert-octagon"></i> <span> Error Pages </span> <span class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="error-404.html">404 Error </a></li>
-                                <li><a href="error-500.html">500 Error </a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><i data-feather="layout"></i> <span> Table </span> <span class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="tables-basic.html">Basic Tables </a></li>
-                                <li><a href="data-tables.html">Data Table </a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><img src="~/Content/Admin/img/icons/product.svg" alt="img"><span> Application</span> <span class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="chat.html">Chat</a></li>
-                                <li><a href="calendar.html">Calendar</a></li>
-                                <li><a href="email.html">Email</a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><img src="~/Content/Admin/img/icons/time.svg" alt="img"><span> Report</span> <span class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="purchaseorderreport.html">Purchase order report</a></li>
-                                <li><a href="inventoryreport.html">Inventory Report</a></li>
-                                <li><a href="salesreport.html">Sales Report</a></li>
-                                <li><a href="invoicereport.html">Invoice Report</a></li>
-                                <li><a href="purchasereport.html">Purchase Report</a></li>
-                                <li><a href="supplierreport.html">Supplier Report</a></li>
-                                <li><a href="customerreport.html">Customer Report</a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><img src="~/Content/Admin/img/icons/users1.svg" alt="img"><span> Users</span> <span class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="newuser.html">New User </a></li>
-                                <li><a href="userlists.html">Users List</a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><img src="~/Content/Admin/img/icons/settings.svg" alt="img"><span> Settings</span> <span class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="generalsettings.html">General Settings</a></li>
-                                <li><a href="emailsettings.html">Email Settings</a></li>
-                                <li><a href="paymentsettings.html">Payment Settings</a></li>
-                                <li><a href="currencysettings.html">Currency Settings</a></li>
-                                <li><a href="grouppermissions.html">Group Permissions</a></li>
-                                <li><a href="taxrates.html">Tax Rates</a></li>
-                            </ul>
+                            <a href="blankpage.html"><i data-feather="file"></i><span> Contact Show</span> </a>
                         </li>
                     </ul>
                 </div>
@@ -156,91 +113,12 @@
 
         <div class="page-wrapper">
             <div class="content">
-                <div class="row">
-                </div>
-                <div class="card mb-0">
-                    <div class="card-body">
-                        <h4 class="card-title">Expired Products</h4>
-                        <div class="table-responsive dataview">
-                            <table class="table datatable ">
-                                <thead>
-                                    <tr>
-                                        <th>SNo</th>
-                                        <th>Product Code</th>
-                                        <th>Product Name</th>
-                                        <th>Brand Name</th>
-                                        <th>Category Name</th>
-                                        <th>Expiry Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><a href="javascript:void(0);">IT0001</a></td>
-                                        <td class="productimgname">
-                                            <a class="product-img" href="productlist.html">
-                                                <img src="~/Content/Admin/img/product/product2.jpg" alt="product">
-                                            </a>
-                                            <a href="productlist.html">Orange</a>
-                                        </td>
-                                        <td>N/D</td>
-                                        <td>Fruits</td>
-                                        <td>12-12-2022</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td><a href="javascript:void(0);">IT0002</a></td>
-                                        <td class="productimgname">
-                                            <a class="product-img" href="productlist.html">
-                                                <img src="~/Content/Admin/img/product/product3.jpg" alt="product">
-                                            </a>
-                                            <a href="productlist.html">Pineapple</a>
-                                        </td>
-                                        <td>N/D</td>
-                                        <td>Fruits</td>
-                                        <td>25-11-2022</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td><a href="javascript:void(0);">IT0003</a></td>
-                                        <td class="productimgname">
-                                            <a class="product-img" href="productlist.html">
-                                                <img src="~/Content/Admin/img/product/product4.jpg" alt="product">
-                                            </a>
-                                            <a href="productlist.html">Stawberry</a>
-                                        </td>
-                                        <td>N/D</td>
-                                        <td>Fruits</td>
-                                        <td>19-11-2022</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td><a href="javascript:void(0);">IT0004</a></td>
-                                        <td class="productimgname">
-                                            <a class="product-img" href="productlist.html">
-                                                <img src="~/Content/Admin/img/product/product5.jpg" alt="product">
-                                            </a>
-                                            <a href="productlist.html">Avocat</a>
-                                        </td>
-                                        <td>N/D</td>
-                                        <td>Fruits</td>
-                                        <td>20-11-2022</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                <div>
+                    @RenderBody()
                 </div>
             </div>
         </div>
     </div>
-
-
-    <div>
-        @RenderBody()
-    </div>
-
-
     <script src="~/Content/Admin/js/jquery-3.6.0.min.js"></script>
     <script src="~/Content/Admin/js/feather.min.js"></script>
     <script src="~/Content/Admin/js/jquery.slimscroll.min.js"></script>
@@ -251,5 +129,7 @@
     <script src="~/Content/Admin/plugins/sweetalert/sweetalert2.all.min.js"></script>
     <script src="~/Content/Admin/plugins/sweetalert/sweetalerts.min.js"></script>
     <script src="~/Content/Admin/js/script.js"></script>
+    <script src="~/Content/js/CustomScript.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

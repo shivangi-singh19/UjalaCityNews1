@@ -4,5 +4,83 @@
     Layout = "~/Views/Shared/_Admin1.cshtml";
 }
 
-<h2>Index</h2>
+<div class="page-header">
+    <div class="page-title">
+        <h4>Purchase order report</h4>
+        <h6>Manage your Purchase order report</h6>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-top">
+            <div class="search-set">
+                <div class="search-input">
+                    <a class="btn btn-searchset"><img src="~/Content/Admin/img/icons/search-white.svg" alt="img"></a>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="table-responsive">
+            <table class="table datanew" >
+                <thead>
+                    <tr>    
+                        <th>English Title</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Tag</th>
+                        <th>Date</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody id="tblTbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {            
+            loadData();
+            //$(document).on('change', '.dataTables_length select', function () {
+            //    loadData();
+            //});
+            //$(document).on('click', '.paginate_button', function () {
+            //    loadData();
+            //});
+        });
+        var loadData = () => {
+            let param = {
+                S: $('.dataTables_length select').val(),
+                P: $('.dataTables_paginate .paginate_button.active .page-link').text()
+            };
+            console.log('param :', param);
+            $.get('/Admin/GetPostList', (data) => {
+                $('.datanew tbody').empty().append(data);
+                //if ($('.datanew').DataTable().settings().length) {
+                //    $('.datanew').DataTable().clear().destroy();
+                //}
+                $('.datanew').DataTable({
+                    "bFilter": true,
+                    "sDom": 'fBtlpi',
+                    'pagingType': 'numbers',
+                    "ordering": true,
+                    "language": {
+                        search: ' ',
+                        sLengthMenu: '_MENU_',
+                        searchPlaceholder: "Search...",
+                        info: "_START_ - _END_ of _TOTAL_ items",
+                    },
+                    initComplete: (settings, json) => {
+                        $('.dataTables_filter').appendTo('#tableSearch');
+                        $('.dataTables_filter').appendTo('.search-input');
+                    },
+                });
+            })
+        }
+    </script>
+}
 

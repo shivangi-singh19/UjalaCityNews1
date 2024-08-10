@@ -1,0 +1,38 @@
+﻿@model IList<UjalaCityNews1.Models.PostCatWise>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!-- More Area Start Here -->
+@if (Model.Any())
+{
+    foreach (var cat in Model)
+    {
+        <section class="bg-body section-space-less30">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="topic-border color-hollywood-cerise mb-30">
+                            <div class="topic-box-lg color-hollywood-cerise">@cat.CategoryItem</div>
+                        </div>
+                        <div class="row">
+                            @foreach (var innerItem in cat.Posts)
+                            {
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="mb-25">
+                                        <a class="img-opacity-hover" href="single-news-1.html">
+                                            <img src="@innerItem.ImagePath" alt="news" class="img-fluid width-100 mb-15">
+                                        </a>
+                                        <h3 class="title-medium-dark size-s" style="font-size:13px">
+                                            <a href="/Home/News/@innerItem.Slug">@innerItem.EnglishTitle</a>
+                                        </h3>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+}
