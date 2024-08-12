@@ -29,7 +29,37 @@ namespace UjalaCityNews1.DAL
             }
 
         }
+        public List<ContactUs> GetContactList()
+        {
+            List<ContactUs> list = new List<ContactUs>();
 
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from ContactUs", con); // Assume you have a stored procedure for this
+                cmd.CommandType = CommandType.Text;// Handle null values
+
+                con.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ContactUs item = new ContactUs
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            Name = reader.IsDBNull(reader.GetOrdinal("Name")) ? null : reader.GetString(reader.GetOrdinal("Name")),
+                            Email = reader.IsDBNull(reader.GetOrdinal("Email")) ? null : reader.GetString(reader.GetOrdinal("Email")),
+                            Subject = reader.IsDBNull(reader.GetOrdinal("Subject")) ? null : reader.GetString(reader.GetOrdinal("Subject")),
+                            Message = reader.IsDBNull(reader.GetOrdinal("Message")) ? null : reader.GetString(reader.GetOrdinal("Message")),
+                         };
+
+                        list.Add(item);
+                    }
+                }
+            }
+
+            return list;
+        }
         #region News Post
         public void SaveOrUpdateNewsPost(NewsPosts newsPost)
         {

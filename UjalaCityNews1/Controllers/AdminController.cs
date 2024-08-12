@@ -19,6 +19,11 @@ namespace UjalaCityNews1.Controllers
         {
             return View();
         }
+        public ActionResult ContactShow()
+        {
+            var list = _commonDal.GetContactList();
+            return View(list);
+        }
         public ActionResult GetPostList()
         {
             var list = _commonDal.GetNewsPostsByName();
