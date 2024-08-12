@@ -21,11 +21,12 @@
             </div>
         </div>
 
-        
+
         <div class="table-responsive">
-            <table class="table datanew" >
+            <table class="table datanew">
                 <thead>
-                    <tr>    
+                    <tr>
+                        <th>Action</th>
                         <th>English Title</th>
                         <th>Name</th>
                         <th>Category</th>
@@ -43,14 +44,8 @@
 
 @section scripts {
     <script>
-        $(document).ready(function () {            
+        $(document).ready(function () {
             loadData();
-            //$(document).on('change', '.dataTables_length select', function () {
-            //    loadData();
-            //});
-            //$(document).on('click', '.paginate_button', function () {
-            //    loadData();
-            //});
         });
         var loadData = () => {
             let param = {
@@ -60,9 +55,6 @@
             console.log('param :', param);
             $.get('/Admin/GetPostList', (data) => {
                 $('.datanew tbody').empty().append(data);
-                //if ($('.datanew').DataTable().settings().length) {
-                //    $('.datanew').DataTable().clear().destroy();
-                //}
                 $('.datanew').DataTable({
                     "bFilter": true,
                     "sDom": 'fBtlpi',

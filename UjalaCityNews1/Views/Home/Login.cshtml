@@ -22,25 +22,17 @@
                 <h2>Sign In</h2>
 
                 <div class="form">
-
                     <div class="inputBox">
-
-                        <input type="text" required> <i>Username</i>
-
+                        <input type="text" required id="username"> <i>Username</i>
                     </div>
-
+                    <small class="text-danger username" style="display: none; color: #0f0">Username is required</small>
                     <div class="inputBox">
-
-                        <input type="password" required> <i>Password</i>
-
+                        <input type="password" required id="password"> <i>Password</i>
                     </div>
-
+                    <small class="text-danger password" style="display: none; color: #0f0">Password is required</small>
                     <div class="inputBox">
-
-                        <input type="submit" value="Login">
-
+                        <input type="button" id="loginFormBtn" value="Login">
                     </div>
-
                 </div>
 
             </div>
@@ -51,3 +43,38 @@
 
 </body>
 </html>
+
+<script src="~/Content/js/jquery-2.2.4.min.js"></script>
+<script>
+    $("#loginFormBtn").click(function (e) {
+        e.preventDefault(); // Prevent the default form submission
+        if ($('#username').val() == '') {
+            $('.username').show();
+            return false;
+        }
+        else {
+            $('.username').hide();
+        }
+        if ($('#password').val() == '') {
+            $('.password').show();
+            return false;
+        }
+        else {
+            $('.password').hide();
+        }
+        let param = {
+            username: $('#username').val(),
+            password: $('#password').val()
+        };
+        $.post('/Account/Login', param, (res) =>
+        {
+            if (res) {
+                window.location.href = '/Admin/Index';
+            } else {
+                alert('Incorrect Username or password');
+            }
+        }).error((xhr) => {
+            alert('Incorrect Username or password');
+        });
+    });
+</script>

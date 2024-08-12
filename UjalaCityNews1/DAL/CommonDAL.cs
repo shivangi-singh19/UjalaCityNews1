@@ -31,7 +31,6 @@ namespace UjalaCityNews1.DAL
         }
 
         #region News Post
-
         public void SaveOrUpdateNewsPost(NewsPosts newsPost)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -190,6 +189,7 @@ namespace UjalaCityNews1.DAL
                             Category = reader.IsDBNull(reader.GetOrdinal("Category")) ? null : reader.GetString(reader.GetOrdinal("Category")),
                             Name = reader.IsDBNull(reader.GetOrdinal("Name")) ? null : reader.GetString(reader.GetOrdinal("Name")),
                             Date = reader.IsDBNull(reader.GetOrdinal("Date")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("Date")),
+                            DateString = reader.IsDBNull(reader.GetOrdinal("Date")) ? (string)null : reader.GetDateTime(reader.GetOrdinal("Date")).ToString("dd-MM-yyyy"),
                             CreatedDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("CreatedDate")),
                             ImagePath = reader.IsDBNull(reader.GetOrdinal("ImagePath")) ? null : reader.GetString(reader.GetOrdinal("ImagePath")),
                             Description = reader.IsDBNull(reader.GetOrdinal("Description")) ? null : reader.GetString(reader.GetOrdinal("Description")),
@@ -203,6 +203,20 @@ namespace UjalaCityNews1.DAL
             }
 
             return newsPostsList;
+        }
+        public int DeletePostById(int id)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Delete NewsPosts where id = @id", con);
+                cmd.CommandType = CommandType.Text;
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            return 1;
         }
         #endregion
 
@@ -371,6 +385,82 @@ namespace UjalaCityNews1.DAL
         #endregion
 
 
+        #region Account Controller
+        public int InsertUser(AddUser user)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("Proc_AddUser", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Adding parameters
+                    command.Parameters.AddWithValue("@Username", user.username);
+                    command.Parameters.AddWithValue("@Email", user.email);
+                    command.Parameters.AddWithValue("@Password", user.password);
+
+                    //// Output parameter to capture the new user's ID
+                    //SqlParameter userIdParam = new SqlParameter
+                    //{
+                    //    ParameterName = "@UserId",
+                    //    SqlDbType = SqlDbType.Int,
+                    //    Direction = ParameterDirection.Output
+                    //};
+                    //command.Parameters.Add(userIdParam);
+
+                    // Open the connection
+                    connection.Open();
+
+                    // Execute the command
+                    command.ExecuteNonQuery();
+
+                    // Retrieve the newly created UserId
+                    //int newUserId = (int)userIdParam.Value;
+
+                    return 1;
+                }
+            }
+        }
+        public int? VerifyUserLogin(Login login)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("Proc_VerifyUserLogin", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Adding parameters
+                    command.Parameters.AddWithValue("@UsernameOrEmail", login.username);
+                    command.Parameters.AddWithValue("@Password", login.password);
+
+                    // Output parameter to capture the user ID if login is successful
+                    SqlParameter userIdParam = new SqlParameter
+                    {
+                        ParameterName = "@UserId",
+                        SqlDbType = SqlDbType.Int,
+                        Direction = ParameterDirection.Output
+                    };
+                    command.Parameters.Add(userIdParam);
+
+                    // Open the connection
+                    connection.Open();
+
+                    // Execute the command
+                    command.ExecuteNonQuery();  
+
+                    // Retrieve the UserId if login is successful
+                    if (userIdParam.Value != DBNull.Value)
+                    {
+                        return (int)userIdParam.Value;
+                    }
+                    else
+                    {
+                        return null; // Login failed
+                    }
+                }
+            }
+        }
+        #endregion
 
     }
 }

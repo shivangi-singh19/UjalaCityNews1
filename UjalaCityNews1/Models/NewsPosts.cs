@@ -20,6 +20,7 @@ namespace UjalaCityNews1.Models
         public string Category { get; set; }
         public string Name { get; set; }
         public DateTime? Date { get; set; } = DateTime.Now;
+        public string DateString { get; set; } = "";
         public DateTime? CreatedDate { get; set; } = DateTime.Now;
         public HttpPostedFileBase Image { get; set; }
         public string ImagePath { get; set; }

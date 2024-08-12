@@ -149,7 +149,7 @@ section .signin {
             font-weight: 600;
         }
 
-.signin .content .form .inputBox input[type="submit"] {
+.signin .content .form .inputBox input[type="button"] {
     padding: 10px;
     background: #0f0;
     color: #000;
@@ -159,7 +159,7 @@ section .signin {
     cursor: pointer;
 }
 
-input[type="submit"]:active {
+input[type="button"]:active {
     opacity: 0.6;
 }
 

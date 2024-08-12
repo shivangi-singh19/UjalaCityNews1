@@ -120,13 +120,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\AuthorizeUserAttribute.cs" />
     <Compile Include="Common\WebHelper.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\CommonDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddUser.cs" />
     <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\NewsPosts.cs" />
     <Compile Include="Models\ContactUs.cs" />
@@ -1140,6 +1143,7 @@
     <Content Include="Views\Admin\CategoriesList.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Category.cshtml" />
+    <Content Include="Views\Account\AddUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -69,6 +69,50 @@ $(document).ready(function () {
             }
         });
     });
+    $("#btnAddUser").click(function (e) {
+        e.preventDefault(); // Prevent the default form submission
+        if ($('#username').val() == '') {
+            $('.username').show();
+            return false;
+        }
+        else {
+            $('.username').hide();
+        }
+        if ($('#email').val() == '') {
+            $('.email').show();
+            return false;
+        }
+        else {
+            $('.email').hide();
+        }
+        if ($('#password').val() == '') {
+            $('.password').show();
+            return false;
+        }
+        else {
+            $('.password').hide();
+        }
+        var form = $("#btnAddUserForm")[0]; // Get the form element
+        var formData = new FormData(form); // Create FormData object from the form element
+        
 
+        $('.contact-response').show();
+
+        $.ajax({
+            url: "/Account/AddUser", // URL to send the request to
+            type: 'POST', // HTTP method
+            data: formData, // Form data
+            processData: false, // Prevent jQuery from automatically transforming the data into a query string
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function (response) {
+                setTimeout(() => {
+                    window.location.href = '/Admin/Index'; // Redirect to another page on success
+                }, 1000);
+            },
+            error: function (xhr, status, error) {
+                alert("An error occurred: " + error);
+            }
+        });
+    });
 
 });

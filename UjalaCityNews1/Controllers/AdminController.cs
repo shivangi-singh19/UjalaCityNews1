@@ -10,6 +10,7 @@ using UjalaCityNews1.Models;
 
 namespace UjalaCityNews1.Controllers
 {
+    [AuthorizeUser]
     public class AdminController : Controller
     {
         private readonly CommonDAL _commonDal = new CommonDAL();
@@ -22,6 +23,12 @@ namespace UjalaCityNews1.Controllers
         {
             var list = _commonDal.GetNewsPostsByName();
             return PartialView("_PostList", list);
+        }
+        [HttpPost]
+        public ActionResult DeletePost(int id)
+        {
+            var list = _commonDal.DeletePostById(id);
+            return Json(1);
         }
         public ActionResult AddNews(int id = 0)
         {
