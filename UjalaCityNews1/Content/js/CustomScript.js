@@ -115,4 +115,30 @@ $(document).ready(function () {
         });
     });
 
+    
+    $("#SubmitSlider").click(function (e) {
+        e.preventDefault(); // Prevent the default form submission
+
+        var form = $("#AddSliderForm")[0]; // Get the form element
+        var formData = new FormData(form); // Create FormData object from the form element
+
+        formData.set("isShowOnHome", $("#isShowOnHome").is(":checked"));
+        $('.contact-response').show();
+
+        $.ajax({
+            url: "/Admin/AddHomeSlider", // URL to send the request to
+            type: 'POST', // HTTP method
+            data: formData, // Form data
+            processData: false, // Prevent jQuery from automatically transforming the data into a query string
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function (response) {
+                setTimeout(() => {
+                    window.location.href = '/Admin/AddHomeSlider'; // Redirect to another page on success
+                }, 1000);
+            },
+            error: function (xhr, status, error) {
+                alert("An error occurred: " + error);
+            }
+        });
+    });
 });

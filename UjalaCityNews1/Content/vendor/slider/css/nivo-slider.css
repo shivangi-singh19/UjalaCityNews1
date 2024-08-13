@@ -154,7 +154,7 @@
 
 /* Caption styles */
 
-.nivo-caption {
+/*.nivo-caption {
 
     text-align: center;
 
@@ -182,13 +182,13 @@
 
 	filter:alpha(opacity=8);
 
-	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-webkit-box-sizing: border-box;*/ /* Safari/Chrome, other WebKit */
 
-	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	/*-moz-box-sizing: border-box;*/    /* Firefox, other Gecko */
 
-	box-sizing: border-box;         /* Opera/IE 8+ */
+	/*box-sizing: border-box;*/         /* Opera/IE 8+ */
 
-}
+/*}*/
 
 .nivo-caption p {
 
@@ -349,7 +349,7 @@ Default Theme
 
     left:0; 
 
-    top:0;  
+    bottom:0;  
 
     color:#fff;
 

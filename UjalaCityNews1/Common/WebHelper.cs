@@ -40,7 +40,7 @@ namespace UjalaCityNews1.Common
             {
                 return input;
             }
-            return input.Replace(' ', '-').Replace('.', ' ');
+            return input.Replace(' ', '-').Replace('.', '-').Replace(',', '-');
         }
 
     }

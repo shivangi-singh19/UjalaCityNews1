@@ -51,7 +51,7 @@ preview-1
 .preview-1 .nivo-controlNav {
     position: absolute;
     z-index: 99999;
-    bottom: 68px;
+    bottom: 20px;
     left: 0;
     right: 0;
     margin: 0 auto;

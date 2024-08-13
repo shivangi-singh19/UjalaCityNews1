@@ -1,9 +1,7 @@
-﻿@model IList<UjalaCityNews1.Models.PostCatWise>
+﻿@model UjalaCityNews1.Models.HomeIndexContent
 @{
     ViewBag.Title = "Home Page";
 }
-
-
 
 
 <section class="bg-accent section-space-bottom-less4">
@@ -13,80 +11,60 @@
                 <div class="main-slider1 img-overlay-slider">
                     <div class="bend niceties preview-1">
                         <div id="ensign-nivoslider-3" class="slides">
-                            <img src="~/Content/img/banner/slide002.jpg" alt="slider" title="#slider-direction-1" />
-                            <img src="~/Content/img/banner/slide001.jpg" alt="slider" title="#slider-direction-2" />
-                            <img src="~/Content/img/banner/slide003.jpg" alt="slider" title="#slider-direction-3" />
+                            @if (Model.HomeSlider.Any())
+                            {
+                                for (var i = 0; i < Model.HomeSlider.Count; i++)
+                                {
+                                    <img src="@Model.HomeSlider[i].ImagePath" alt="slider" title="#slider-direction-@i" />
+                                }
+                            }
                         </div>
-                        <div id="slider-direction-1" class="t-cn slider-direction">
-                            <div class="slider-content s-tb slide-1">
-                                <div class="title-container s-tb-c">
-                                    <div class="text-left pl-50 pl20-xs">
-                                        <div class="post-date-light d-none d-sm-block">
-                                            <ul>
-                                                <li>
-                                                    <span>
-                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                    </span>July 08, 2023
-                                                </li>
-                                            </ul>
+                        @if (Model.HomeSlider.Any())
+                        {
+                            for (var i = 0; i < Model.HomeSlider.Count; i++)
+                            {
+                                <div id="slider-direction-@i" class="t-cn slider-direction">
+                                    <div class="slider-content s-tb slide-1">
+                                        <div class="title-container s-tb-c">
+                                            <div class="text-left pl-50 pl20-xs">
+                                                <div class="post-date-light d-none d-sm-block">
+                                                    <ul>
+                                                        <li>
+                                                            <span>
+                                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                            </span>@Model.HomeSlider[i].DateString
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                @*<div class="slider-title"><a href="/home/index/@Model.HomeSlider[i].TitleSlug"></a>@Model.HomeSlider[i].Title</div>*@
+                                                <div class="slider-title">@Model.HomeSlider[i].Title</div>
+                                            </div>
                                         </div>
-                                        <div class="slider-title">अन्य मिशन से कितना अलग है चंद्रयान-3, इसके पीछे का चेहरा कौन, पहले क्या थी उनकी भूमिका?</div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div id="slider-direction-2" class="t-cn slider-direction">
-                            <div class="slider-content s-tb slide-2">
-                                <div class="title-container s-tb-c">
-                                    <div class="text-left pl-50 pl20-xs">
-                                        <div class="post-date-light d-none d-sm-block">
-                                            <ul>
-                                                <li>
-                                                    <span>
-                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                    </span>July 08, 2023
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="slider-title">PM ने योजनाओं का लोकार्पण किया, बोले- एक्स्प्रेस-वे के मामले में राजस्थान ने डबल सेंचुरी मार दी</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="slider-direction-3" class="t-cn slider-direction">
-                            <div class="slider-content s-tb slide-3">
-                                <div class="title-container s-tb-c">
-                                    <div class="text-left pl-50 pl20-xs">
-                                        <div class="post-date-light d-none d-sm-block">
-                                            <ul>
-                                                <li>
-                                                    <span>
-                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                    </span>July 08, 2023
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="slider-title">रील लाइफ की 'तरला दलाल' र‍ियल में क‍ितनी अच्छी कुक? हुमा कुरैशी ने खोले राज </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            }
+                        }
+
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-12">
-                <div class="newsletter-area bg-primary">
-                    <img src="~/Content/img/mam002.jpg" alt="newsletter" class="img-fluid m-auto mb-15">
-                    <p>भाई बहन ने मिलकर दिया था इंस्पेक्टर की हत्या को अंजाम। इंस्पेक्टर सतीश सिंह की कई अन्य महिलाओं से अवैध रिश्ते और इन रिश्तों के चलते पत्नी भावना सिंह से लगातार झगडा होता था बहन भावना को परेशान देख भाई देवेंद्र वर्मा ने इंस्पेक्टर की हत्या का बनाया था</p>
+                <div class="img-overlay-70 img-scale-animate mb-4">
+                    <div class="mask-content-sm">
+                        <h3 class="title-medium-light" style="color:blueviolet">
+                            <a href="details.aspx">Jagran Exclusive: IMD के विज्ञानी से जानें दिल्ली में अगले 5 दिन कैसा रहेगा मौसम, क्या अगस्त में घटेगी बारिश?</a>
+                        </h3>
+                    </div>
+                    <img src="~/Content/img/news/news118.jpg" alt="news" class="img-fluid width-100">
                 </div>
             </div>
         </div>
     </div>
 </section>
 <!-- More Area Start Here -->
-@if (Model.Any())
+@if (Model.PostCatWise.Any())
 {
-    foreach (var cat in Model)
+    foreach (var cat in Model.PostCatWise)
 
     {
         <section class="bg-body section-space-less30">

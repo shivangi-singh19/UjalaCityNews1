@@ -131,6 +131,7 @@
     </Compile>
     <Compile Include="Models\AddUser.cs" />
     <Compile Include="Models\Categories.cs" />
+    <Compile Include="Models\HomeIndexContent.cs" />
     <Compile Include="Models\NewsPosts.cs" />
     <Compile Include="Models\ContactUs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1145,9 +1146,12 @@
     <Content Include="Views\Home\Category.cshtml" />
     <Content Include="Views\Account\AddUser.cshtml" />
     <Content Include="Views\Admin\ContactShow.cshtml" />
+    <Content Include="Views\Admin\AddHomeSlider.cshtml" />
+    <Content Include="Views\Admin\SliderList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\ClientImages\SliderImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

@@ -51,7 +51,7 @@ namespace UjalaCityNews1.DAL
                             Email = reader.IsDBNull(reader.GetOrdinal("Email")) ? null : reader.GetString(reader.GetOrdinal("Email")),
                             Subject = reader.IsDBNull(reader.GetOrdinal("Subject")) ? null : reader.GetString(reader.GetOrdinal("Subject")),
                             Message = reader.IsDBNull(reader.GetOrdinal("Message")) ? null : reader.GetString(reader.GetOrdinal("Message")),
-                         };
+                        };
 
                         list.Add(item);
                     }
@@ -476,7 +476,7 @@ namespace UjalaCityNews1.DAL
                     connection.Open();
 
                     // Execute the command
-                    command.ExecuteNonQuery();  
+                    command.ExecuteNonQuery();
 
                     // Retrieve the UserId if login is successful
                     if (userIdParam.Value != DBNull.Value)
@@ -492,5 +492,157 @@ namespace UjalaCityNews1.DAL
         }
         #endregion
 
+
+        #region Slider
+        public void SaveOrUpdateHomeSlider(HomeSlider homeSlider)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Proc_AddOrUpdateHomeSlider", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Id", homeSlider.Id);
+                cmd.Parameters.AddWithValue("@Title", homeSlider.Title ?? string.Empty);
+                cmd.Parameters.AddWithValue("@TitleSlug", homeSlider.TitleSlug ?? string.Empty);
+                cmd.Parameters.AddWithValue("@Date", homeSlider.Date ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@DateString", homeSlider.DateString ?? string.Empty);
+                cmd.Parameters.AddWithValue("@CreatedDate", homeSlider.CreatedDate ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@ImagePath", homeSlider.ImagePath ?? string.Empty);
+                cmd.Parameters.AddWithValue("@isShowOnHome", homeSlider.isShowOnHome);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public HomeSlider GetHomeSliderById(int id)
+        {
+            HomeSlider homeSlider = null;
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from HomeSlider where id = @Id", con); // Assuming the SP is named "GetHomeSliderById"
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@Id", id);
+
+                con.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        homeSlider = new HomeSlider
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            Title = reader.IsDBNull(reader.GetOrdinal("Title")) ? null : reader.GetString(reader.GetOrdinal("Title")),
+                            TitleSlug = reader.IsDBNull(reader.GetOrdinal("TitleSlug")) ? null : reader.GetString(reader.GetOrdinal("TitleSlug")),
+                            Date = reader.IsDBNull(reader.GetOrdinal("Date")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("Date")),
+                            DateString = reader.IsDBNull(reader.GetOrdinal("Date")) ? null : reader.GetOrdinal("Date").ToString("MMM dd, yyyy"),
+                            CreatedDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("CreatedDate")),
+                            ImagePath = reader.IsDBNull(reader.GetOrdinal("ImagePath")) ? null : reader.GetString(reader.GetOrdinal("ImagePath")),
+                            isShowOnHome = reader.IsDBNull(reader.GetOrdinal("isShowOnHome")) ? false : reader.GetBoolean(reader.GetOrdinal("isShowOnHome"))
+                        };
+                    }
+                }
+            }
+
+            return homeSlider;
+        }
+
+        public List<HomeSlider> GetSliderList()
+        {
+            List<HomeSlider> list = new List<HomeSlider>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from HomeSlider", con); // Assume you have a stored procedure for this
+                cmd.CommandType = CommandType.Text;// Handle null values
+
+                con.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        HomeSlider item = new HomeSlider
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            Title = reader.IsDBNull(reader.GetOrdinal("Title")) ? null : reader.GetString(reader.GetOrdinal("Title")),
+                            TitleSlug = reader.IsDBNull(reader.GetOrdinal("TitleSlug")) ? null : reader.GetString(reader.GetOrdinal("TitleSlug")),
+                            Date = reader.IsDBNull(reader.GetOrdinal("Date")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("Date")),
+                            DateString = reader.IsDBNull(reader.GetOrdinal("Date")) ? null : reader.GetDateTime(reader.GetOrdinal("Date")).ToString("MMM dd, yyyy"),
+                            CreatedDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("CreatedDate")),
+                            ImagePath = reader.IsDBNull(reader.GetOrdinal("ImagePath")) ? null : reader.GetString(reader.GetOrdinal("ImagePath")),
+                            isShowOnHome = reader.IsDBNull(reader.GetOrdinal("isShowOnHome")) ? false : reader.GetBoolean(reader.GetOrdinal("isShowOnHome"))
+                        };
+
+                        list.Add(item);
+                    }
+                }
+            }
+
+            return list;
+        }
+        public List<HomeSlider> GetSliderListForHome()
+        {
+            List<HomeSlider> list = new List<HomeSlider>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from HomeSlider where isShowOnHome = 1", con); // Assume you have a stored procedure for this
+                cmd.CommandType = CommandType.Text;// Handle null values
+
+                con.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        HomeSlider item = new HomeSlider
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            Title = reader.IsDBNull(reader.GetOrdinal("Title")) ? null : reader.GetString(reader.GetOrdinal("Title")),
+                            TitleSlug = reader.IsDBNull(reader.GetOrdinal("TitleSlug")) ? null : reader.GetString(reader.GetOrdinal("TitleSlug")),
+                            Date = reader.IsDBNull(reader.GetOrdinal("Date")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("Date")),
+                            DateString = reader.IsDBNull(reader.GetOrdinal("Date")) ? null : reader.GetDateTime(reader.GetOrdinal("Date")).ToString("MMM dd, yyyy"),
+                            CreatedDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("CreatedDate")),
+                            ImagePath = reader.IsDBNull(reader.GetOrdinal("ImagePath")) ? null : reader.GetString(reader.GetOrdinal("ImagePath")),
+                            isShowOnHome = reader.IsDBNull(reader.GetOrdinal("isShowOnHome")) ? false : reader.GetBoolean(reader.GetOrdinal("isShowOnHome"))
+                        };
+
+                        list.Add(item);
+                    }
+                }
+            }
+
+            return list;
+        }
+        public int DeleteSliderById(int id)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Delete HomeSlider where id = @id", con);
+                cmd.CommandType = CommandType.Text;
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            return 1;
+        }
+        public void UpdateIsShowOnHome(int id)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(@"UPDATE HomeSlider SET isShowOnHome = isShowOnHome ^ 1 WHERE id = @Id", con);
+                cmd.CommandType = CommandType.Text;
+
+                cmd.Parameters.AddWithValue("@Id", id);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
     }
 }

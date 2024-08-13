@@ -26,7 +26,13 @@ namespace UjalaCityNews1.Controllers
                 Posts = group.ToList()
             })
             .ToList();
-            return View(postCatWiseList);
+            var sliderList = _commonDal.GetSliderListForHome();
+
+            return View(new HomeIndexContent
+            {
+                PostCatWise = postCatWiseList,
+                HomeSlider = sliderList
+            });
         }
         public ActionResult Category(string title)
         {

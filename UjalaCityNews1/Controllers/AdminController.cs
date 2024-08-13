@@ -104,5 +104,52 @@ namespace UjalaCityNews1.Controllers
             return Json(catDDL, JsonRequestBehavior.AllowGet);
         }
         #endregion
+        #region SLider
+        public ActionResult AddHomeSlider(int id = 0)
+        {
+            var model = new HomeSlider();
+            if (id > 0)
+            {
+                model = _commonDal.GetHomeSliderById(id);
+                if (model == null)
+                {
+                    model = new HomeSlider();
+                }
+            }
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult AddHomeSlider(HomeSlider model)
+        {
+            if (model.Image != null && model.Image.ContentLength > 0)
+            {
+                string filePath = WebHelper.SaveFile(model.Image, "/Content/ClientImages/SliderImages/");
+                model.ImagePath = filePath;
+            }
+
+            model.TitleSlug = WebHelper.ConvertSpacesToHyphens(model.Title);
+            _commonDal.SaveOrUpdateHomeSlider(model);
+
+            return Json("Slider Saved Succefully");
+        }
+        public ActionResult SliderList()
+        {
+            var list = _commonDal.GetSliderList();
+            return View(list);
+        }
+        [HttpPost]
+        public ActionResult DeleteSlider(int id)
+        {
+            var list = _commonDal.DeleteSliderById(id);
+            return Json(1);
+        }
+        [HttpPost]
+        public ActionResult UpdateIsShowOnHome(int id)
+        {
+            _commonDal.UpdateIsShowOnHome(id);
+            return Json("Updated Succefully");
+        }
+        #endregion
+
     }
 }

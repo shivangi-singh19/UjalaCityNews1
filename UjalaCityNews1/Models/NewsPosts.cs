@@ -28,4 +28,16 @@ namespace UjalaCityNews1.Models
         public string Tag { get; set; }
         public string Slug { get; set; }
     }
+    public class HomeSlider
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string TitleSlug { get; set; }
+        public DateTime? Date { get; set; } = DateTime.Now;
+        public string DateString { get; set; } = "";
+        public DateTime? CreatedDate { get; set; } = DateTime.Now;
+        public HttpPostedFileBase Image { get; set; }
+        public string ImagePath { get; set; }
+        public bool isShowOnHome { get; set; }
+    }
 }
