@@ -178,3 +178,263 @@ input[type="button"]:active {
 }
 
 
+.testimonial-two {
+    position: relative;
+    display: block;
+    background-color: var(--qrowd-black);
+    padding: 120px 0 203px;
+    z-index: 1;
+}
+
+.testimonial-two-bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 52.5%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    mix-blend-mode: luminosity;
+    opacity: 0.05;
+    z-index: -1;
+}
+
+.testimonial-two__left {
+    position: relative;
+    display: block;
+    z-index: 5;
+}
+
+    .testimonial-two__left .section-title {
+        margin-bottom: 30px;
+    }
+
+    .testimonial-two__left .section-title__title {
+        color: var(--qrowd-white);
+    }
+
+.testimonial-two__text {
+    color: #8b9e9e;
+    font-weight: 500;
+    margin-right: 85px;
+}
+
+.testimonial-two__right {
+    position: relative;
+    display: block;
+}
+
+.testimonial-two__carousel {
+    position: relative;
+    display: block;
+}
+
+.testimonial-two__single {
+    position: relative;
+    display: block;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 10px 60px 0px rgba(0, 0, 0, 0.07);
+    padding: 50px 50px 37px;
+    border: 1px solid #dde5e5;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    z-index: 1;
+}
+
+    .testimonial-two__single:hover {
+        box-shadow: 0px 10px 60px 0px rgba(0, 0, 0, 0.15);
+    }
+
+    .testimonial-two__single:before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        right: -1px;
+        height: 4px;
+        background-color: var(--qrowd-primary);
+        transition: transform 500ms ease;
+        transform: scale(0, 1);
+        transform-origin: left center;
+    }
+
+    .testimonial-two__single:hover:before {
+        transform: scale(1, 1);
+        transform-origin: right center;
+    }
+
+.testimonial-two__client-info {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.testimonial-two__client-img {
+    position: relative;
+    display: inline-block;
+    width: 88px;
+}
+
+    .testimonial-two__client-img img {
+        width: 100%;
+        border-radius: 50%;
+        border: 4px solid var(--qrowd-primary);
+    }
+
+.testimonial-two__client-content {
+    margin-left: 20px;
+}
+
+.testimonial-two__client-name {
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 25px;
+    margin-bottom: 5px;
+}
+
+.testimonial-two__client-sub-title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.testimonial-two__text-2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 34px;
+    padding-top: 19px;
+    padding-bottom: 12px;
+}
+
+.testimonial-two__quote {
+    position: relative;
+    display: inline-block;
+}
+
+    .testimonial-two__quote span {
+        position: relative;
+        display: inline-block;
+        font-size: 55px;
+        color: var(--qrowd-base);
+    }
+
+.testimonial-two__rating {
+    position: absolute;
+    bottom: 50px;
+    right: -20px;
+    display: flex;
+    align-items: center;
+    background-color: var(--qrowd-extra);
+    padding: 12px 20px 13px;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.testimonial-two__single:hover .testimonial-two__rating {
+    background-color: var(--qrowd-base);
+}
+
+.testimonial-two__rating:after {
+    position: absolute;
+    bottom: -15px;
+    right: 0;
+    content: "";
+    border-top: 0px solid transparent;
+    border-left: 20px solid #e1eaea;
+    border-bottom: 15px solid transparent;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.testimonial-two__single:hover .testimonial-two__rating:after {
+    border-left: 20px solid #f57845;
+}
+
+.testimonial-two__rating i {
+    font-size: 15px;
+    color: var(--qrowd-base);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+    .testimonial-two__rating i + i {
+        margin-left: 3px;
+    }
+
+.testimonial-two__single:hover .testimonial-two__rating i {
+    color: var(--qrowd-white);
+}
+
+.testimonial-two__carousel.owl-carousel .owl-stage-outer {
+    overflow: visible;
+}
+
+.testimonial-two__carousel.owl-carousel .owl-item {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 500ms ease, visibility 500ms ease;
+}
+
+    .testimonial-two__carousel.owl-carousel .owl-item.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+.testimonial-two__carousel.owl-theme .owl-nav {
+    position: absolute;
+    bottom: 24px;
+    left: -400px;
+    margin: 0;
+}
+
+    .testimonial-two__carousel.owl-theme .owl-nav .owl-next {
+        height: 50px;
+        width: 50px;
+        line-height: 50px;
+        border-radius: 50%;
+        color: var(--qrowd-black);
+        background-color: rgba(var(--qrowd-white-rgb), .20);
+        font-size: 15px;
+        margin: 0;
+        -webkit-transition: all 500ms ease;
+        transition: all 500ms ease;
+    }
+
+    .testimonial-two__carousel.owl-theme .owl-nav .owl-prev {
+        height: 50px;
+        width: 50px;
+        line-height: 50px;
+        border-radius: 50%;
+        color: var(--qrowd-black);
+        background-color: rgba(var(--qrowd-white-rgb), .20);
+        font-size: 15px;
+        margin: 0;
+        text-align: center;
+        -webkit-transition: all 500ms ease;
+        transition: all 500ms ease;
+        position: relative;
+        display: inline-block;
+        transform: rotate(180deg);
+    }
+
+    .testimonial-two__carousel.owl-theme .owl-nav .owl-next {
+        margin-left: 5px;
+    }
+
+    .testimonial-two__carousel.owl-theme .owl-nav .owl-prev {
+        margin-right: 5px;
+    }
+
+        .testimonial-two__carousel.owl-theme .owl-nav .owl-next span,
+        .testimonial-two__carousel.owl-theme .owl-nav .owl-prev span {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .testimonial-two__carousel.owl-theme .owl-nav .owl-next:hover,
+        .testimonial-two__carousel.owl-theme .owl-nav .owl-prev:hover {
+            background-color: rgba(var(--qrowd-white-rgb), 1);
+        }

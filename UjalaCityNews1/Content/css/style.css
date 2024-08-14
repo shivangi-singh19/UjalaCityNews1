@@ -1408,11 +1408,11 @@ ul.item2-inline li {
 
 .item-box-light-md-less30 {
     display: inline-block;
-    padding: 3rem 3rem 0;
+/*    padding: 3rem 3rem 0;*/
     background-color: #fff;
     -webkit-box-shadow: 0 1px 0 0 rgba(225,225,225,.75);
     -moz-box-shadow: 0 1px 0 0 rgba(225,225,225,.75);
-    box-shadow: 0 1px 0 0 rgba(225,225,225,.75)
+    box-shadow: 0 1px 0 0 rgba(225,225,225,.75)!important
 }
 
 .item-box-light-md-less10 {
@@ -2363,7 +2363,7 @@ ul.item2-inline li {
 }
 
 .section-space-bottom-less4 {
-    padding: 0 0 46px
+    /*padding: 0 0 46px*/
 }
 
 @media only screen and (max-width:767px) {
@@ -5539,7 +5539,7 @@ ul.address-info li i {
 
 blockquote {
     display: inline-block;
-    padding: 30px 15px 35px 80px;
+    padding: 30px 5px 35px 80px;
     position: relative;
     font-size: 18px;
     line-height: 30px;
