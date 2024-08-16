@@ -1,0 +1,62 @@
+﻿@model UjalaCityNews1.Models.City
+@{
+    ViewBag.Title = "Add City";
+    Layout = "~/Views/Shared/_Admin1.cshtml";
+}
+
+
+
+
+<div class="page-header">
+    <div class="page-title">
+        <h4>Add City</h4>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form id="CityForm">
+            <input type="hidden" value="@Model.c_id" name="c_id" />
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>City English</label>
+                        <input required class="form-control" name="city_eng" value="@Model.city_eng" />
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>City Hindi</label>
+                        <input required class="form-control" name="city_hindi" value="@Model.city_hindi" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>State</label>
+                        <select class="select" name="s_id" id="s_id">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <button class="btn btn-submit me-2" id="SubmitCity">Submit</button>
+                    <button class="btn btn-cancel">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            LoadStateDDL($('#s_id'));
+        });
+        var SetDDL = () => {
+            let catVal = '@Model.s_id';
+            if (catVal) {
+                console.log('catVal :', catVal);
+                $("#s_id").val(`${catVal}`).change()
+            }
+        }
+    </script>
+}
+

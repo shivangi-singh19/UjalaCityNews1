@@ -2,7 +2,7 @@ $(document).ready(function () {
     $("#SaveContact").click(function () {
         var form = $("#contact-form");
         var formData = form.serialize();
-        $('.contact-response').show();      
+        $('.contact-response').show();
         $.ajax({
             url: "/Home/SaveContact", // URL to send the request to
             type: 'POST', // HTTP method
@@ -22,7 +22,10 @@ $(document).ready(function () {
 
         var form = $("#AddPostForm")[0]; // Get the form element
         var formData = new FormData(form); // Create FormData object from the form element
-
+        formData.set("Category", $("#Category :selected").text());
+        formData.set("CategorySlug", $("#Category :selected").val());
+        formData.set("StateId", $("#StateId :selected").val());
+        formData.set("CityId", $("#CityId :selected").val());
         $('.contact-response').show();
 
         $.ajax({
@@ -33,7 +36,7 @@ $(document).ready(function () {
             contentType: false, // Set content type to false as jQuery will tell the server its a query string request
             success: function (response) {
                 setTimeout(() => {
-                    window.location.href = '/Admin/AddNews'; // Redirect to another page on success
+                    window.location.href = '/Admin/Index'; // Redirect to another page on success
                 }, 1000);
             },
             error: function (xhr, status, error) {
@@ -61,7 +64,7 @@ $(document).ready(function () {
             contentType: false, // Set content type to false as jQuery will tell the server its a query string request
             success: function (response) {
                 setTimeout(() => {
-                    window.location.href = '/Admin/AddCategories'; // Redirect to another page on success
+                    window.location.href = '/Admin/CategoriesList'; // Redirect to another page on success
                 }, 1000);
             },
             error: function (xhr, status, error) {
@@ -94,7 +97,7 @@ $(document).ready(function () {
         }
         var form = $("#btnAddUserForm")[0]; // Get the form element
         var formData = new FormData(form); // Create FormData object from the form element
-        
+
 
         $('.contact-response').show();
 
@@ -115,7 +118,7 @@ $(document).ready(function () {
         });
     });
 
-    
+
     $("#SubmitSlider").click(function (e) {
         e.preventDefault(); // Prevent the default form submission
 
@@ -141,4 +144,81 @@ $(document).ready(function () {
             }
         });
     });
+    $("#SubmitState").click(function (e) {
+        e.preventDefault(); // Prevent the default form submission
+
+        var form = $("#StateForm")[0]; // Get the form element
+        var formData = new FormData(form); // Create FormData object from the form element
+
+        $('.contact-response').show();
+
+        $.ajax({
+            url: "/Admin/AddState", // URL to send the request to
+            type: 'POST', // HTTP method
+            data: formData, // Form data
+            processData: false, // Prevent jQuery from automatically transforming the data into a query string
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function (response) {
+                setTimeout(() => {
+                    window.location.href = '/Admin/StateList'; // Redirect to another page on success
+                }, 1000);
+            },
+            error: function (xhr, status, error) {
+                alert("An error occurred: " + error);
+            }
+        });
+    });
+    $("#SubmitCity").click(function (e) {
+        e.preventDefault(); // Prevent the default form submission
+
+        var form = $("#CityForm")[0]; // Get the form element
+        var formData = new FormData(form); // Create FormData object from the form element
+        formData.set("s_id", $("#s_id :selected").val());
+        $('.contact-response').show();
+
+        $.ajax({
+            url: "/Admin/AddCity", // URL to send the request to
+            type: 'POST', // HTTP method
+            data: formData, // Form data
+            processData: false, // Prevent jQuery from automatically transforming the data into a query string
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function (response) {
+                setTimeout(() => {
+                    window.location.href = '/Admin/CityList'; // Redirect to another page on success
+                }, 1000);
+            },
+            error: function (xhr, status, error) {
+                alert("An error occurred: " + error);
+            }
+        });
+    });
 });
+var LoadStateDDL = (selector, stateId = 0) => {
+    $.get('/Home/GetStateList', (res) => {
+        selector.empty().append('<option value="0">Select State</option>').append(res.map(a => {
+            return `<option value="${a.s_id}">${a.state_eng}</option>`;
+        }));
+        setTimeout(() => {
+            if (stateId) {
+                selector.val(`${stateId}`).change();
+            }
+        }, 1);
+    });
+}
+var LoadCityDDL = (selector, stateId = 0, cityId = 0) => {
+    $.get('/Home/GetCityList', { stateId }, (res) => {
+        selector.empty().append('<option value="0">Select City</option>').append(res.map(a => {
+            return `<option value="${a.c_id}">${a.city_eng}</option>`;
+        }));
+        if (cityId) {
+            selector.val(`${cityId}`).change();
+        }
+        setTimeout(() => {
+            if (cityId) {
+                selector.val(`${cityId}`).change();
+            }
+        }, 1000);
+
+    });
+}
+

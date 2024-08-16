@@ -18,6 +18,7 @@ namespace UjalaCityNews1.Models
         public string EnglishTitle { get; set; }
         public string HindiTitle { get; set; }
         public string Category { get; set; }
+        public string CategorySlug { get; set; }
         public string Name { get; set; }
         public DateTime? Date { get; set; } = DateTime.Now;
         public string DateString { get; set; } = "";
@@ -27,6 +28,12 @@ namespace UjalaCityNews1.Models
         public string Description { get; set; }
         public string Tag { get; set; }
         public string Slug { get; set; }
+        public int s_id { get; set; }
+        public string state_eng { get; set; }
+        public string state_hindi { get; set; }
+        public int c_id { get; set; }
+        public string city_eng { get; set; }
+        public string city_hindi { get; set; }
     }
     public class HomeSlider
     {

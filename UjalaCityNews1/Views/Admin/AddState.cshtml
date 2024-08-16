@@ -1,0 +1,38 @@
+﻿@model UjalaCityNews1.Models.State
+@{
+    ViewBag.Title = "Add State";
+    Layout = "~/Views/Shared/_Admin1.cshtml";
+}
+
+<div class="page-header">
+    <div class="page-title">
+        <h4>Add State</h4>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form id="StateForm">
+            <input type="hidden" value="@Model.s_id" name="s_id" />
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>State English</label>
+                        <input required class="form-control" name="state_eng" value="@Model.state_eng" />
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>State Hindi</label>
+                        <input required class="form-control" name="state_hindi" value="@Model.state_hindi" />
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <button class="btn btn-submit me-2" id="SubmitState">Submit</button>
+                    <button class="btn btn-cancel">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

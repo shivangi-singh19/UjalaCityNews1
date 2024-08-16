@@ -17,8 +17,8 @@
 <div class="card">
     <div class="card-body">
         <form id="AddPostForm">
-            <input type="hidden" value="@Model.Id" name="Id"/>
-            <input type="hidden" value="@Model.ImagePath" name="ImagePath"/>
+            <input type="hidden" value="@Model.Id" name="Id" />
+            <input type="hidden" value="@Model.ImagePath" name="ImagePath" />
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-group">
@@ -41,7 +41,7 @@
                 <div class="col-lg-3 col-sm-6 col-12">
                     <div class="form-group">
                         <label>Category</label>
-                        <select class="select Category" name="Category" id="Category" value="@Model.Category">
+                        <select class="select Category" name="Category" id="Category">
                         </select>
                     </div>
                 </div>
@@ -49,6 +49,22 @@
                     <div class="form-group">
                         <label>Tag</label>
                         <input class="form-control" name="Tag" value="@Model.Tag" />
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>State</label>
+                        <select class="select state" name="s_id" id="s_id">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>City</label>
+                        <select class="select city" name="c_id" id="c_id">
+                            <option value="0">Select City</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 col-12">
@@ -97,33 +113,41 @@
 @section scripts {
     <script>
         $(document).ready(function () {
-            let catVal = '@Model.Category';
-            if (catVal) {
-                $('.Category').val(catVal).change();
+            loadCatDDL();
+            let stateId = $('#s_id :selected').val()
+            LoadStateDDL($('#s_id'), '@Model.s_id');
+            if (@Model.s_id) {
+                LoadCityDDL($('#c_id'), '@Model.s_id', '@Model.c_id');
             }
             $('#ImageFile').change(function (event) {
                 var reader = new FileReader();
-
                 reader.onload = function (e) {
                     $('#preview').attr('src', e.target.result).show();
                 };
-
-                // Read the file as a data URL.
                 reader.readAsDataURL(event.target.files[0]);
             });
-            loadCatDDL();
+            $(document).on('change', '#s_id', () => {
+                LoadCityDDL($('#c_id'), $('#s_id :selected').val());
+            });
         });
         var loadCatDDL = () => {
             $.get('/Admin/GetActiveCategoriesDDL', (res) => {
-                console.log(res);
                 $('#Category').empty().append('<option value="">Select Category</option>').append(res.map(item => {
                     return $('<option>', {
-                        value: item.Name,
+                        value: item.Slug,
                         text: item.Name
                     });
                 }));
+                SetCatDDL();
             });
         }
+        var SetCatDDL = () => {
+            let catVal = '@Model.CategorySlug';
+            if (catVal) {
+                $("#Category").val(`${catVal}`).change()
+            }
+        }
+
     </script>
 }
 

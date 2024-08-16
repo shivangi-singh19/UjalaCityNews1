@@ -1,0 +1,155 @@
+﻿
+@model IList<UjalaCityNews1.Models.City>
+@{
+    ViewBag.Title = "CityList";
+    Layout = "~/Views/Shared/_Admin1.cshtml";
+}
+
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+
+<div class="page-header">
+    <div class="page-title">
+        <h4>City List</h4>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-top">
+            <div class="search-set">
+                <div class="search-input">
+                    <a class="btn btn-searchset"><img src="~/Content/Admin/img/icons/search-white.svg" alt="img"></a>
+                </div>
+            </div>
+            <div class="page-btn" style="background: #ff9f43">
+                <a href="/Admin/AddCity" class="btn btn-added">Add City</a>
+            </div>
+        </div>
+
+
+        <div class="table-responsive">
+            <table class="table datanew">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>City English</th>
+                        <th>City Hindi</th>
+                        <th>State English</th>
+                        <th>State Hindi</th>
+                    </tr>
+                </thead>
+                <tbody id="tblTbody">
+                    @if (Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <a class="me-3" href="/Admin/AddCity?id=@item.c_id">
+                                        <img src="~/Content/Admin/img/icons/edit.svg" alt="img">
+                                    </a>
+                                    <a class="me-3 confirm-text2" href="javascript:void(0);" data-postId="@item.c_id">
+                                        <img src="~/Content/Admin/img/icons/delete.svg" alt="img">
+                                    </a>
+                                </td>
+                                <td class="text-wrap">
+                                    @item.city_eng
+                                </td>
+                                <td class="text-wrap">
+                                    @item.city_hindi
+                                </td>
+                                <td class="text-wrap">
+                                    @item.state_eng
+                                </td>
+                                <td class="text-wrap">
+                                    @item.state_hindi
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.datanew').DataTable({
+                "bFilter": true,
+                "sDom": 'fBtlpi',
+                'pagingType': 'numbers',
+                "ordering": true,
+                "language": {
+                    search: ' ',
+                    sLengthMenu: '_MENU_',
+                    searchPlaceholder: "Search...",
+                    info: "_START_ - _END_ of _TOTAL_ items",
+                },
+                initComplete: (settings, json) => {
+                    $('.dataTables_filter').appendTo('#tableSearch');
+                    $('.dataTables_filter').appendTo('.search-input');
+                },
+            });
+        });
+        $(() => {
+            $(".confirm-text2").on("click", function () {
+                let valss = $(this).data("postid");
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",  // Use `icon` instead of `type` for the latest SweetAlert2 version
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!",
+                    confirmButtonClass: "btn btn-primary",
+                    cancelButtonClass: "btn btn-danger ml-1",
+                    buttonsStyling: false,
+                }).then(function (result) {
+                    if (result.isConfirmed) {
+                        fetch('/Admin/DeleteCity', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ id: parseInt(valss) }),
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                // On success
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Deleted!",
+                                    text: "Your post has been deleted.",
+                                    confirmButtonClass: "btn btn-success",
+                                }).then(function () {
+                                    location.reload();
+                                });
+                            })
+                            .catch(error => {
+                                // On failure
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Error!",
+                                    text: "There was an error deleting the post.",
+                                    confirmButtonClass: "btn btn-danger",
+                                });
+                            });
+                    }
+                });
+            });
+
+        })
+    </script>
+}
+
+
+

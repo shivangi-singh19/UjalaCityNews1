@@ -9,6 +9,9 @@
     {
         <tr>
             <td>
+                <a class="me-3" href="/Admin/AddNews?id=@item.Id">
+                    <img src="~/Content/Admin/img/icons/edit.svg" alt="img">
+                </a>
                 <a class="me-3 confirm-text2" href="javascript:void(0);" data-postId="@item.Id">
                     <img src="~/Content/Admin/img/icons/delete.svg" alt="img">
                 </a>
@@ -18,7 +21,10 @@
                 @item.Name
             </td>
             <td>@item.Category</td>
+            <td>@item.CategorySlug</td>
             <td>@item.Tag</td>
+            <td>@item.state_eng</td>
+            <td>@item.city_eng</td>
             <td>@item.DateString</td>
             <td class="productimgname">
                 <a class="product-img">

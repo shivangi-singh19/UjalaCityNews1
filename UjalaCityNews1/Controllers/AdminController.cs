@@ -150,6 +150,67 @@ namespace UjalaCityNews1.Controllers
             return Json("Updated Succefully");
         }
         #endregion
-
+        #region State City
+        public ActionResult AddState(int id = 0)
+        {
+            var model = new State();
+            if (id > 0)
+            {
+                model = _commonDal.GetStateList(id).FirstOrDefault();
+                if (model == null)
+                {
+                    model = new State();
+                }
+            }
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult AddState(State model)
+        {
+            _commonDal.SaveOrUpdateState(model);
+            return Json("State Saved Succefully");
+        }
+        public ActionResult StateList()
+        {
+            var list = _commonDal.GetStateList();
+            return View(list);
+        }
+        [HttpPost]
+        public ActionResult DeleteState(int id)
+        {
+            var list = _commonDal.DeleteStateById(id);
+            return Json(1);
+        }
+        public ActionResult AddCity(int id = 0)
+        {
+            var model = new City();
+            if (id > 0)
+            {
+                model = _commonDal.GetCityList(id).FirstOrDefault();
+                if (model == null)
+                {
+                    model = new City();
+                }
+            }
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult AddCity(City model)
+        {
+            _commonDal.SaveOrUpdateCity(model);
+            return Json("City Saved Succefully");
+        }
+        public ActionResult CityList()
+        {
+            var list = _commonDal.GetCityList();
+            return View(list);
+        }
+        [HttpPost]
+        public ActionResult DeleteCity(int id)
+        {
+            var list = _commonDal.DeleteCityById(id);
+            return Json(1);
+        }
+        #endregion
     }
 }

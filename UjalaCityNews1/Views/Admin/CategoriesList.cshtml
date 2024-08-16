@@ -29,7 +29,9 @@
             <table class="table datanew">
                 <thead>
                     <tr>
+                        <th>Action</th>
                         <th>Name</th>
+                        <th>Slug</th>
                         <th>IsActive</th>
                         <th>Show on home</th>
                     </tr>
@@ -42,8 +44,19 @@
                             var isActive = item.IsActive ? "checked" : "";
                             var IsActiveForHome = item.IsActiveForHome ? "checked" : "";
                             <tr>
+                                <td>
+                                    <a class="me-3" href="/Admin/AddCategories?id=@item.Id">
+                                        <img src="~/Content/Admin/img/icons/edit.svg" alt="img">
+                                    </a>
+                                    <a class="me-3 confirm-text2" href="javascript:void(0);" data-postId="@item.Id">
+                                        <img src="~/Content/Admin/img/icons/delete.svg" alt="img">
+                                    </a>
+                                </td>
                                 <td class="text-wrap">
-                                    <a target="_blank" href="/Admin/AddCategories?id=@item.Id">@item.Name</a>
+                                    @item.Name
+                                </td>
+                                <td class="text-wrap">
+                                    @item.Slug
                                 </td>
                                <td>
                                     <input class="statusToggle" id="Something" data-catid="@item.Id" data-typestatus="isactive" type="checkbox" data-size="sm" @isActive data-toggle="toggle" data-onstyle="success">

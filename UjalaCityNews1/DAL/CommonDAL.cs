@@ -72,12 +72,15 @@ namespace UjalaCityNews1.DAL
                 cmd.Parameters.AddWithValue("@EnglishTitle", newsPost.EnglishTitle ?? string.Empty);
                 cmd.Parameters.AddWithValue("@HindiTitle", newsPost.HindiTitle ?? string.Empty);
                 cmd.Parameters.AddWithValue("@Category", newsPost.Category ?? string.Empty);
+                cmd.Parameters.AddWithValue("@CategorySlug", newsPost.CategorySlug ?? string.Empty);
                 cmd.Parameters.AddWithValue("@Name", newsPost.Name ?? string.Empty);
                 cmd.Parameters.AddWithValue("@Date", newsPost.Date == null ? (object)newsPost.Date : (object)newsPost.Date);
                 cmd.Parameters.AddWithValue("@ImagePath", newsPost.ImagePath ?? string.Empty);
                 cmd.Parameters.AddWithValue("@Description", newsPost.Description ?? string.Empty);
                 cmd.Parameters.AddWithValue("@Tag", newsPost.Tag ?? string.Empty);
                 cmd.Parameters.AddWithValue("@Slug", newsPost.Slug ?? string.Empty);
+                cmd.Parameters.AddWithValue("@s_id", newsPost.s_id);
+                cmd.Parameters.AddWithValue("@c_id", newsPost.c_id);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -106,13 +109,20 @@ namespace UjalaCityNews1.DAL
                             EnglishTitle = reader.IsDBNull(reader.GetOrdinal("EnglishTitle")) ? null : reader.GetString(reader.GetOrdinal("EnglishTitle")),
                             HindiTitle = reader.IsDBNull(reader.GetOrdinal("HindiTitle")) ? null : reader.GetString(reader.GetOrdinal("HindiTitle")),
                             Category = reader.IsDBNull(reader.GetOrdinal("Category")) ? null : reader.GetString(reader.GetOrdinal("Category")),
+                            CategorySlug = reader.IsDBNull(reader.GetOrdinal("CategorySlug")) ? null : reader.GetString(reader.GetOrdinal("CategorySlug")),
                             Name = reader.IsDBNull(reader.GetOrdinal("Name")) ? null : reader.GetString(reader.GetOrdinal("Name")),
                             Date = reader.IsDBNull(reader.GetOrdinal("Date")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("Date")),
                             CreatedDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("CreatedDate")),
                             ImagePath = reader.IsDBNull(reader.GetOrdinal("ImagePath")) ? null : reader.GetString(reader.GetOrdinal("ImagePath")),
                             Description = reader.IsDBNull(reader.GetOrdinal("Description")) ? null : reader.GetString(reader.GetOrdinal("Description")),
                             Tag = reader.IsDBNull(reader.GetOrdinal("Tag")) ? null : reader.GetString(reader.GetOrdinal("Tag")),
-                            Slug = reader.IsDBNull(reader.GetOrdinal("Slug")) ? null : reader.GetString(reader.GetOrdinal("Slug"))
+                            Slug = reader.IsDBNull(reader.GetOrdinal("Slug")) ? null : reader.GetString(reader.GetOrdinal("Slug")),
+                            city_hindi = reader.IsDBNull(reader.GetOrdinal("city_hindi")) ? null : reader.GetString(reader.GetOrdinal("city_hindi")),
+                            city_eng = reader.IsDBNull(reader.GetOrdinal("city_eng")) ? null : reader.GetString(reader.GetOrdinal("city_eng")),
+                            state_eng = reader.IsDBNull(reader.GetOrdinal("state_eng")) ? null : reader.GetString(reader.GetOrdinal("state_eng")),
+                            state_hindi = reader.IsDBNull(reader.GetOrdinal("state_hindi")) ? null : reader.GetString(reader.GetOrdinal("state_hindi")),
+                            c_id = reader.IsDBNull(reader.GetOrdinal("c_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("c_id")),
+                            s_id = reader.IsDBNull(reader.GetOrdinal("s_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("s_id"))
                         };
 
                     }
@@ -143,13 +153,20 @@ namespace UjalaCityNews1.DAL
                             EnglishTitle = reader.IsDBNull(reader.GetOrdinal("EnglishTitle")) ? null : reader.GetString(reader.GetOrdinal("EnglishTitle")),
                             HindiTitle = reader.IsDBNull(reader.GetOrdinal("HindiTitle")) ? null : reader.GetString(reader.GetOrdinal("HindiTitle")),
                             Category = reader.IsDBNull(reader.GetOrdinal("Category")) ? null : reader.GetString(reader.GetOrdinal("Category")),
+                            CategorySlug = reader.IsDBNull(reader.GetOrdinal("CategorySlug")) ? null : reader.GetString(reader.GetOrdinal("CategorySlug")),
                             Name = reader.IsDBNull(reader.GetOrdinal("Name")) ? null : reader.GetString(reader.GetOrdinal("Name")),
                             Date = reader.IsDBNull(reader.GetOrdinal("Date")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("Date")),
                             CreatedDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("CreatedDate")),
                             ImagePath = reader.IsDBNull(reader.GetOrdinal("ImagePath")) ? null : reader.GetString(reader.GetOrdinal("ImagePath")),
                             Description = reader.IsDBNull(reader.GetOrdinal("Description")) ? null : reader.GetString(reader.GetOrdinal("Description")),
                             Tag = reader.IsDBNull(reader.GetOrdinal("Tag")) ? null : reader.GetString(reader.GetOrdinal("Tag")),
-                            Slug = reader.IsDBNull(reader.GetOrdinal("Slug")) ? null : reader.GetString(reader.GetOrdinal("Slug"))
+                            Slug = reader.IsDBNull(reader.GetOrdinal("Slug")) ? null : reader.GetString(reader.GetOrdinal("Slug")),
+                            city_hindi = reader.IsDBNull(reader.GetOrdinal("city_hindi")) ? null : reader.GetString(reader.GetOrdinal("city_hindi")),
+                            city_eng = reader.IsDBNull(reader.GetOrdinal("city_eng")) ? null : reader.GetString(reader.GetOrdinal("city_eng")),
+                            state_eng = reader.IsDBNull(reader.GetOrdinal("state_eng")) ? null : reader.GetString(reader.GetOrdinal("state_eng")),
+                            state_hindi = reader.IsDBNull(reader.GetOrdinal("state_hindi")) ? null : reader.GetString(reader.GetOrdinal("state_hindi")),
+                            c_id = reader.IsDBNull(reader.GetOrdinal("c_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("c_id")),
+                            s_id = reader.IsDBNull(reader.GetOrdinal("s_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("s_id"))
                         };
 
                     }
@@ -180,13 +197,20 @@ namespace UjalaCityNews1.DAL
                             EnglishTitle = reader.IsDBNull(reader.GetOrdinal("EnglishTitle")) ? null : reader.GetString(reader.GetOrdinal("EnglishTitle")),
                             HindiTitle = reader.IsDBNull(reader.GetOrdinal("HindiTitle")) ? null : reader.GetString(reader.GetOrdinal("HindiTitle")),
                             Category = reader.IsDBNull(reader.GetOrdinal("Category")) ? null : reader.GetString(reader.GetOrdinal("Category")),
+                            CategorySlug = reader.IsDBNull(reader.GetOrdinal("CategorySlug")) ? null : reader.GetString(reader.GetOrdinal("CategorySlug")),
                             Name = reader.IsDBNull(reader.GetOrdinal("Name")) ? null : reader.GetString(reader.GetOrdinal("Name")),
                             Date = reader.IsDBNull(reader.GetOrdinal("Date")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("Date")),
                             CreatedDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("CreatedDate")),
                             ImagePath = reader.IsDBNull(reader.GetOrdinal("ImagePath")) ? null : reader.GetString(reader.GetOrdinal("ImagePath")),
                             Description = reader.IsDBNull(reader.GetOrdinal("Description")) ? null : reader.GetString(reader.GetOrdinal("Description")),
                             Tag = reader.IsDBNull(reader.GetOrdinal("Tag")) ? null : reader.GetString(reader.GetOrdinal("Tag")),
-                            Slug = reader.IsDBNull(reader.GetOrdinal("Slug")) ? null : reader.GetString(reader.GetOrdinal("Slug"))
+                            Slug = reader.IsDBNull(reader.GetOrdinal("Slug")) ? null : reader.GetString(reader.GetOrdinal("Slug")),
+                            city_hindi = reader.IsDBNull(reader.GetOrdinal("city_hindi")) ? null : reader.GetString(reader.GetOrdinal("city_hindi")),
+                            city_eng = reader.IsDBNull(reader.GetOrdinal("city_eng")) ? null : reader.GetString(reader.GetOrdinal("city_eng")),
+                            state_eng = reader.IsDBNull(reader.GetOrdinal("state_eng")) ? null : reader.GetString(reader.GetOrdinal("state_eng")),
+                            state_hindi = reader.IsDBNull(reader.GetOrdinal("state_hindi")) ? null : reader.GetString(reader.GetOrdinal("state_hindi")),
+                            c_id = reader.IsDBNull(reader.GetOrdinal("c_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("c_id")),
+                            s_id = reader.IsDBNull(reader.GetOrdinal("s_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("s_id"))
                         };
 
                     }
@@ -217,6 +241,7 @@ namespace UjalaCityNews1.DAL
                             EnglishTitle = reader.IsDBNull(reader.GetOrdinal("EnglishTitle")) ? null : reader.GetString(reader.GetOrdinal("EnglishTitle")),
                             HindiTitle = reader.IsDBNull(reader.GetOrdinal("HindiTitle")) ? null : reader.GetString(reader.GetOrdinal("HindiTitle")),
                             Category = reader.IsDBNull(reader.GetOrdinal("Category")) ? null : reader.GetString(reader.GetOrdinal("Category")),
+                            CategorySlug = reader.IsDBNull(reader.GetOrdinal("CategorySlug")) ? null : reader.GetString(reader.GetOrdinal("CategorySlug")),
                             Name = reader.IsDBNull(reader.GetOrdinal("Name")) ? null : reader.GetString(reader.GetOrdinal("Name")),
                             Date = reader.IsDBNull(reader.GetOrdinal("Date")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("Date")),
                             DateString = reader.IsDBNull(reader.GetOrdinal("Date")) ? (string)null : reader.GetDateTime(reader.GetOrdinal("Date")).ToString("dd-MM-yyyy"),
@@ -224,7 +249,13 @@ namespace UjalaCityNews1.DAL
                             ImagePath = reader.IsDBNull(reader.GetOrdinal("ImagePath")) ? null : reader.GetString(reader.GetOrdinal("ImagePath")),
                             Description = reader.IsDBNull(reader.GetOrdinal("Description")) ? null : reader.GetString(reader.GetOrdinal("Description")),
                             Tag = reader.IsDBNull(reader.GetOrdinal("Tag")) ? null : reader.GetString(reader.GetOrdinal("Tag")),
-                            Slug = reader.IsDBNull(reader.GetOrdinal("Slug")) ? null : reader.GetString(reader.GetOrdinal("Slug"))
+                            Slug = reader.IsDBNull(reader.GetOrdinal("Slug")) ? null : reader.GetString(reader.GetOrdinal("Slug")),
+                            city_hindi = reader.IsDBNull(reader.GetOrdinal("city_hindi")) ? null : reader.GetString(reader.GetOrdinal("city_hindi")),
+                            city_eng = reader.IsDBNull(reader.GetOrdinal("city_eng")) ? null : reader.GetString(reader.GetOrdinal("city_eng")),
+                            state_eng = reader.IsDBNull(reader.GetOrdinal("state_eng")) ? null : reader.GetString(reader.GetOrdinal("state_eng")),
+                            state_hindi = reader.IsDBNull(reader.GetOrdinal("state_hindi")) ? null : reader.GetString(reader.GetOrdinal("state_hindi")),
+                            c_id = reader.IsDBNull(reader.GetOrdinal("c_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("c_id")),
+                            s_id = reader.IsDBNull(reader.GetOrdinal("s_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("s_id"))
                         };
 
                         newsPostsList.Add(newsPost);
@@ -274,13 +305,20 @@ namespace UjalaCityNews1.DAL
                             EnglishTitle = reader.IsDBNull(reader.GetOrdinal("EnglishTitle")) ? null : reader.GetString(reader.GetOrdinal("EnglishTitle")),
                             HindiTitle = reader.IsDBNull(reader.GetOrdinal("HindiTitle")) ? null : reader.GetString(reader.GetOrdinal("HindiTitle")),
                             Category = reader.IsDBNull(reader.GetOrdinal("Category")) ? null : reader.GetString(reader.GetOrdinal("Category")),
+                            CategorySlug = reader.IsDBNull(reader.GetOrdinal("CategorySlug")) ? null : reader.GetString(reader.GetOrdinal("CategorySlug")),
                             Name = reader.IsDBNull(reader.GetOrdinal("Name")) ? null : reader.GetString(reader.GetOrdinal("Name")),
                             Date = reader.IsDBNull(reader.GetOrdinal("Date")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("Date")),
                             CreatedDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("CreatedDate")),
                             ImagePath = reader.IsDBNull(reader.GetOrdinal("ImagePath")) ? null : reader.GetString(reader.GetOrdinal("ImagePath")),
                             Description = reader.IsDBNull(reader.GetOrdinal("Description")) ? null : reader.GetString(reader.GetOrdinal("Description")),
                             Tag = reader.IsDBNull(reader.GetOrdinal("Tag")) ? null : reader.GetString(reader.GetOrdinal("Tag")),
-                            Slug = reader.IsDBNull(reader.GetOrdinal("Slug")) ? null : reader.GetString(reader.GetOrdinal("Slug"))
+                            Slug = reader.IsDBNull(reader.GetOrdinal("Slug")) ? null : reader.GetString(reader.GetOrdinal("Slug")),
+                            city_hindi = reader.IsDBNull(reader.GetOrdinal("city_hindi")) ? null : reader.GetString(reader.GetOrdinal("city_hindi")),
+                            city_eng = reader.IsDBNull(reader.GetOrdinal("city_eng")) ? null : reader.GetString(reader.GetOrdinal("city_eng")),
+                            state_eng = reader.IsDBNull(reader.GetOrdinal("state_eng")) ? null : reader.GetString(reader.GetOrdinal("state_eng")),
+                            state_hindi = reader.IsDBNull(reader.GetOrdinal("state_hindi")) ? null : reader.GetString(reader.GetOrdinal("state_hindi")),
+                            c_id = reader.IsDBNull(reader.GetOrdinal("c_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("c_id")),
+                            s_id = reader.IsDBNull(reader.GetOrdinal("s_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("s_id"))
                         };
 
                         newsPostsList.Add(newsPost);
@@ -310,6 +348,7 @@ namespace UjalaCityNews1.DAL
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             Name = reader.IsDBNull(reader.GetOrdinal("Name")) ? null : reader.GetString(reader.GetOrdinal("Name")),
+                            Slug = reader.IsDBNull(reader.GetOrdinal("Slug")) ? null : reader.GetString(reader.GetOrdinal("Slug")),
                             IsActive = reader.IsDBNull(reader.GetOrdinal("IsActive")) ? false : reader.GetBoolean(reader.GetOrdinal("IsActive")),
                             IsActiveForHome = reader.IsDBNull(reader.GetOrdinal("IsActiveForHome")) ? false : reader.GetBoolean(reader.GetOrdinal("IsActiveForHome"))
                         };
@@ -339,6 +378,7 @@ namespace UjalaCityNews1.DAL
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             Name = reader.IsDBNull(reader.GetOrdinal("Name")) ? null : reader.GetString(reader.GetOrdinal("Name")),
+                            Slug = reader.IsDBNull(reader.GetOrdinal("Slug")) ? null : reader.GetString(reader.GetOrdinal("Slug")),
                             IsActive = reader.IsDBNull(reader.GetOrdinal("IsActive")) ? false : reader.GetBoolean(reader.GetOrdinal("IsActive")),
                             IsActiveForHome = reader.IsDBNull(reader.GetOrdinal("IsActiveForHome")) ? false : reader.GetBoolean(reader.GetOrdinal("IsActiveForHome"))
                         };
@@ -369,6 +409,7 @@ namespace UjalaCityNews1.DAL
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             Name = reader.IsDBNull(reader.GetOrdinal("Name")) ? null : reader.GetString(reader.GetOrdinal("Name")),
+                            Slug = reader.IsDBNull(reader.GetOrdinal("Slug")) ? null : reader.GetString(reader.GetOrdinal("Slug")),
                             IsActive = reader.IsDBNull(reader.GetOrdinal("IsActive")) ? false : reader.GetBoolean(reader.GetOrdinal("IsActive")),
                             IsActiveForHome = reader.IsDBNull(reader.GetOrdinal("IsActiveForHome")) ? false : reader.GetBoolean(reader.GetOrdinal("IsActiveForHome"))
                         };
@@ -389,6 +430,7 @@ namespace UjalaCityNews1.DAL
 
                 cmd.Parameters.AddWithValue("@Id", model.Id);
                 cmd.Parameters.AddWithValue("@Name", model.Name ?? string.Empty);
+                cmd.Parameters.AddWithValue("@Slug", model.Slug ?? string.Empty);
                 cmd.Parameters.AddWithValue("@IsActive", model.IsActive);
                 cmd.Parameters.AddWithValue("@IsActiveForHome", model.IsActiveForHome);
 
@@ -491,8 +533,6 @@ namespace UjalaCityNews1.DAL
             }
         }
         #endregion
-
-
         #region Slider
         public void SaveOrUpdateHomeSlider(HomeSlider homeSlider)
         {
@@ -642,6 +682,121 @@ namespace UjalaCityNews1.DAL
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
+        }
+        #endregion
+        #region State City
+        public List<State> GetStateList(int id = 0)
+        {
+            List<State> list = new List<State>();
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from State WHERE (s_id = @stateId OR @stateId = 0)", con);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@stateId", id);
+                con.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        State item = new State
+                        {
+                            s_id = reader.GetInt32(reader.GetOrdinal("s_id")),
+                            state_hindi = reader.IsDBNull(reader.GetOrdinal("state_hindi")) ? null : reader.GetString(reader.GetOrdinal("state_hindi")),
+                            state_eng = reader.IsDBNull(reader.GetOrdinal("state_eng")) ? null : reader.GetString(reader.GetOrdinal("state_eng")),
+                        };
+
+                        list.Add(item);
+                    }
+                }
+            }
+            return list;
+        }
+        public List<City> GetCityList(int stateId = 0, int cityId = 0)
+        {
+            List<City> list = new List<City>();
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Select c.*, s.state_eng, s.state_hindi from City c Inner join State s on s.s_id = c.s_id where (c.s_id = @stateId OR @stateId = 0) AND (c.c_id = @cityId OR @cityId = 0)", con);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@stateId", stateId);
+                cmd.Parameters.AddWithValue("@cityId", cityId);
+                con.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        City item = new City
+                        {
+                            c_id = reader.GetInt32(reader.GetOrdinal("c_id")),
+                            s_id = reader.GetInt32(reader.GetOrdinal("s_id")),
+                            city_hindi = reader.IsDBNull(reader.GetOrdinal("city_hindi")) ? null : reader.GetString(reader.GetOrdinal("city_hindi")),
+                            city_eng = reader.IsDBNull(reader.GetOrdinal("city_eng")) ? null : reader.GetString(reader.GetOrdinal("city_eng")),
+                            state_eng = reader.IsDBNull(reader.GetOrdinal("state_eng")) ? null : reader.GetString(reader.GetOrdinal("state_eng")),
+                            state_hindi = reader.IsDBNull(reader.GetOrdinal("state_hindi")) ? null : reader.GetString(reader.GetOrdinal("state_hindi")),
+
+                        };
+                        list.Add(item);
+                    }
+                }
+            }
+            return list;
+        }
+        public void SaveOrUpdateState(State model)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Proc_AddUpdateState", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Id", model.s_id);
+                cmd.Parameters.AddWithValue("@state_hindi", model.state_hindi ?? string.Empty);
+                cmd.Parameters.AddWithValue("@state_eng", model.state_eng ?? string.Empty);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public void SaveOrUpdateCity(City model)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Proc_AddUpdateCity", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", model.c_id);
+                cmd.Parameters.AddWithValue("@sid", model.s_id);
+                cmd.Parameters.AddWithValue("@city_hindi", model.city_hindi ?? string.Empty);
+                cmd.Parameters.AddWithValue("@city_eng", model.city_eng ?? string.Empty);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public int DeleteCityById(int id)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Delete City where c_id = @id", con);
+                cmd.CommandType = CommandType.Text;
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            return 1;
+        }
+        public int DeleteStateById(int id)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Delete State where s_id = @id", con);
+                cmd.CommandType = CommandType.Text;
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            return 1;
         }
         #endregion
     }

@@ -130,5 +130,17 @@ namespace UjalaCityNews1.Controllers
             _commonDal.AddContact(model);
             return Json("Contact Data Saved Succefully");
         }
+        #region State City
+        public ActionResult GetStateList()
+        {
+            var list = _commonDal.GetStateList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetCityList()
+        {
+            var list = _commonDal.GetCityList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
     }
 }
