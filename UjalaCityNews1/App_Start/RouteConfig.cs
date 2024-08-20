@@ -29,6 +29,11 @@ namespace UjalaCityNews1
                 defaults: new { controller = "Home", action = "Category", title = UrlParameter.Optional }
             );
             routes.MapRoute(
+                name: "Place",
+                url: "{controller}/{action}/{title}",
+                defaults: new { controller = "Home", action = "Place", title = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

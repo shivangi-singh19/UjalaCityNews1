@@ -1,3 +1,6 @@
+var statData;
+var cityData;
+var stateCityMapping;
 $(document).ready(function () {
     $("#SaveContact").click(function () {
         var form = $("#contact-form");
@@ -192,6 +195,53 @@ $(document).ready(function () {
             }
         });
     });
+
+    if (!statData) {
+        $.get('/Home/GetStateList', (res) => {
+            statData = res;
+        });
+    }
+    if (!cityData) {
+        $.get('/Home/GetCityList', (res) => {
+            cityData = res;
+            setTimeout(() => {
+                stateCityMapping = statData?.map(function (state) {
+                    state.cities = cityData?.filter(function (city) {
+                        return city.s_id === state.s_id;
+                    }).map(function (city) {
+                        return {
+                            "c_id": city.c_id,
+                            "city_hindi": city.city_hindi,
+                            "city_eng": city.city_eng
+                        };
+                    });
+                    return state;
+                });
+                var _html = '';
+                stateCityMapping.forEach(function (state) {
+                    _html += '<li>';
+                    _html += '<a href="#">' + state.state_hindi + '</a>';
+
+                    // Check if state has cities
+                    if (state.cities && state.cities.length > 0) {
+                        _html += '<ul class="ne-dropdown-submenu">';
+
+                        // Loop through each city within the state
+                        state.cities.forEach(function (city) {
+                            _html += '<li>';
+                            _html += '<a href="/Home/Place/' + city.city_eng +'">' + city.city_hindi + '</a>';
+                            _html += '</li>';
+                        });
+
+                        _html += '</ul>';
+                    }
+
+                    _html += '</li>';
+                });
+                $('#cascadeStateCity').append(_html);
+            }, 2000)
+        });
+    }
 });
 var LoadStateDDL = (selector, stateId = 0) => {
     $.get('/Home/GetStateList', (res) => {
@@ -219,6 +269,6 @@ var LoadCityDDL = (selector, stateId = 0, cityId = 0) => {
             }
         }, 1000);
 
-    });
+    }); 
 }
 

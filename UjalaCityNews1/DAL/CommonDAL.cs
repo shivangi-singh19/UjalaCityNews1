@@ -279,10 +279,6 @@ namespace UjalaCityNews1.DAL
             }
             return 1;
         }
-        #endregion
-
-
-        #region Categories
         public List<NewsPosts> Proc_GetNewsByCategory(string name = "")
         {
             List<NewsPosts> newsPostsList = new List<NewsPosts>();
@@ -328,6 +324,55 @@ namespace UjalaCityNews1.DAL
 
             return newsPostsList;
         }
+        public List<NewsPosts> Proc_GetNewsByCity(string name = "")
+        {
+            List<NewsPosts> newsPostsList = new List<NewsPosts>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Proc_GetNewsByCity", con); // Assume you have a stored procedure for this
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@City", name ?? (object)DBNull.Value); // Handle null values
+
+                con.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        NewsPosts newsPost = new NewsPosts
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            EnglishTitle = reader.IsDBNull(reader.GetOrdinal("EnglishTitle")) ? null : reader.GetString(reader.GetOrdinal("EnglishTitle")),
+                            HindiTitle = reader.IsDBNull(reader.GetOrdinal("HindiTitle")) ? null : reader.GetString(reader.GetOrdinal("HindiTitle")),
+                            Category = reader.IsDBNull(reader.GetOrdinal("Category")) ? null : reader.GetString(reader.GetOrdinal("Category")),
+                            CategorySlug = reader.IsDBNull(reader.GetOrdinal("CategorySlug")) ? null : reader.GetString(reader.GetOrdinal("CategorySlug")),
+                            Name = reader.IsDBNull(reader.GetOrdinal("Name")) ? null : reader.GetString(reader.GetOrdinal("Name")),
+                            Date = reader.IsDBNull(reader.GetOrdinal("Date")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("Date")),
+                            CreatedDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("CreatedDate")),
+                            ImagePath = reader.IsDBNull(reader.GetOrdinal("ImagePath")) ? null : reader.GetString(reader.GetOrdinal("ImagePath")),
+                            Description = reader.IsDBNull(reader.GetOrdinal("Description")) ? null : reader.GetString(reader.GetOrdinal("Description")),
+                            Tag = reader.IsDBNull(reader.GetOrdinal("Tag")) ? null : reader.GetString(reader.GetOrdinal("Tag")),
+                            Slug = reader.IsDBNull(reader.GetOrdinal("Slug")) ? null : reader.GetString(reader.GetOrdinal("Slug")),
+                            city_hindi = reader.IsDBNull(reader.GetOrdinal("city_hindi")) ? null : reader.GetString(reader.GetOrdinal("city_hindi")),
+                            city_eng = reader.IsDBNull(reader.GetOrdinal("city_eng")) ? null : reader.GetString(reader.GetOrdinal("city_eng")),
+                            state_eng = reader.IsDBNull(reader.GetOrdinal("state_eng")) ? null : reader.GetString(reader.GetOrdinal("state_eng")),
+                            state_hindi = reader.IsDBNull(reader.GetOrdinal("state_hindi")) ? null : reader.GetString(reader.GetOrdinal("state_hindi")),
+                            c_id = reader.IsDBNull(reader.GetOrdinal("c_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("c_id")),
+                            s_id = reader.IsDBNull(reader.GetOrdinal("s_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("s_id"))
+                        };
+
+                        newsPostsList.Add(newsPost);
+                    }
+                }
+            }
+
+            return newsPostsList;
+        }
+        #endregion
+
+
+        #region Categories        
         public Categories GetCategoriesById(int id)
         {
             Categories categories = null;

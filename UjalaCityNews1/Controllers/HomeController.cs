@@ -47,6 +47,19 @@ namespace UjalaCityNews1.Controllers
             .ToList();
             return View(postCatWiseList);
         }
+        public ActionResult Place(string title)
+        {
+            var list =  _commonDal.Proc_GetNewsByCity(title);
+            var postCatWiseList = list
+            .GroupBy(post => post.Category)
+            .Select(group => new PostCatWise
+            {
+                CategoryItem = group.Key,
+                Posts = group.ToList()
+            })
+            .ToList();
+            return View("Category", postCatWiseList);
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -106,6 +119,10 @@ namespace UjalaCityNews1.Controllers
 
         public ActionResult News(string title) 
         {
+            if (string.IsNullOrEmpty(title))
+            {
+                return RedirectToAction("Index");
+            }
             var news = _commonDal.GetNewsPostByTitle(title);
             return View(news ?? new NewsPosts());
         }

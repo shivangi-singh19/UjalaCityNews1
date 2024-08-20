@@ -3810,7 +3810,7 @@ div#wrapper.open > .offcanvas-mask {
             border-radius: 0;
             opacity: 0;
             margin: 0;
-            min-width: 240px;
+            min-width: 110px;
             padding: 0;
             top: 100%;
             position: absolute;
@@ -7095,3 +7095,30 @@ body2 {
     font-family: 'Quicksand', sans-serif;
 }
 
+.ne-dropdown-menu {
+    display: none;
+    position: absolute;
+    list-style-type: none;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+li:hover > .ne-dropdown-menu {
+    display: block;
+}
+
+.ne-dropdown-submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    list-style-type: none;
+    background-color: #076b22;
+    padding: 10px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+li:hover > .ne-dropdown-submenu {
+    display: block;
+}
